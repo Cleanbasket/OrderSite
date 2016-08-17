@@ -11,6 +11,15 @@ nav.nav-top .button-collapse i {
 nav.nav-top a {
   color: #5ddbdb;
 }
-.select-item {
+.tab-menu {
   box-shadow: 0 6px 5px 0 rgba(0, 0, 0, 0.02), 0 2px 10px 0 rgba(0, 0, 0, 0.05) !important;
+}
+.tab-menu .tabs {
+  height: 100%;
+}
+.tab-menu .tabs .tab {
+  height: 100%;
+}
+.contents img {
+  width: 100%;
 }
