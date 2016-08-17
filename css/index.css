@@ -1,3 +1,16 @@
-body {
-  background-color: yellow;
+nav.nav-top {
+  background-color: #fff;
+  box-shadow: none !important;
+}
+nav.nav-top .button-collapse {
+  left: 20px;
+}
+nav.nav-top .button-collapse i {
+  font-size: 2rem !important;
+}
+nav.nav-top a {
+  color: #5ddbdb;
+}
+.select-item {
+  box-shadow: 0 6px 5px 0 rgba(0, 0, 0, 0.02), 0 2px 10px 0 rgba(0, 0, 0, 0.05) !important;
 }
