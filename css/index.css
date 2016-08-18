@@ -1,3 +1,14 @@
+button {
+  background-color: #5ddbdb !important;
+}
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 nav.nav-top {
   background-color: #fff;
   box-shadow: none !important;
@@ -20,6 +31,36 @@ nav.nav-top a {
 .tab-menu .tabs .tab {
   height: 100%;
 }
-.contents img {
+.contents-container img {
   width: 100%;
+}
+.contents-container ul li .col .col {
+  padding-left: 0;
+}
+.qty-box {
+  border: 1px solid #bcbcbc;
+  border-radius: 3px;
+  display: block;
+  position: relative;
+}
+.qty-box span {
+  float: left;
+  line-height: 1.5;
+  width: calc(33.33333333%);
+}
+.qty-box .left-set {
+  text-align: left;
+}
+.qty-box .center-set {
+  text-align: center;
+}
+.qty-box .right-set {
+  text-align: right;
+}
+.order-info .col .col {
+  padding-left: 0 !important;
+}
+.order-info button {
+  height: 42px !important;
+  box-shadow: none !important;
 }

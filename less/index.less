@@ -1,5 +1,18 @@
 @import (once) "var";
 
+button {
+	background-color: @primary !important;
+}
+
+* { // 드래그, 블록 지정, 더블 클릭을 막아줌 (잘못된 클릭 방지)
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 //*-- 상단바 --*//
 nav.nav-top {
     background-color: #fff;
@@ -28,8 +41,45 @@ nav.nav-top {
 	}
 }
 
-.contents {
+.contents-container {
 	img {
 		width: 100%;
+	}
+
+	ul li .col .col {
+		padding-left: 0;
+	}
+}
+
+.qty-box {
+	border: 1px solid #bcbcbc;
+	border-radius: 3px;
+	display: block;
+	// float: right;
+	position: relative;
+	
+	span {
+	  float: left;
+	  line-height: 1.5;
+	  width: calc(100%/3);
+	}
+	.left-set {
+		text-align: left;
+	}
+	.center-set {
+		text-align: center;
+	}
+	.right-set {
+		text-align: right;
+	}
+}
+
+.order-info {
+	.col .col {
+		padding-left: 0 !important;
+	}
+	button {
+		height: 42px !important;
+		box-shadow: none !important;
 	}
 }
