@@ -28,7 +28,31 @@ $( document ).ready(function(){
     });
 
 
+//    $('.contents-container').children()[0] ~ [9]
+    
+    // Item라는 객체 생성 
+    function Item(name, price, pty){
+        this.name = name;
+        this.price = price;
+        this.pty = pty;
+    }
 
+    var itemsList = [
+        new Item("와이셔츠", 2000, 0),
+        new Item("정장 한 벌", 6000, 0),
+        new Item("정장 상의", 3500, 0),
+        new Item("정장 하의", 3500, 0),
+        new Item("여성 정장 상의", 3500, 0),
+        new Item("여성 정장 하의", 3500, 0),
+    ];
+
+
+    // html에 추가 
+    var itemsHtml = "";
+    for(var i = 0; i < itemsList.length; i++){
+        itemsHtml += "<ul class='row'><li class= 'col s12'><div class='col s8'><div class='col s12'><div class='left'>" + itemsList[i].name + "</div><div class='right'>₩" + itemsList[i].price + "</div></div></div><div class='qty-box col s4'><span class='dec left-set'>–</span><span class='qty center-set'>" + itemsList[i].pty + "</span><span class='inc right-set'>+</span></div></li></ul>";
+    }
+    $('#business').append(itemsHtml);
 
 });
 
