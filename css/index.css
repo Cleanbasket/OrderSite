@@ -31,6 +31,11 @@ nav.nav-top a {
 .tab-menu .tabs .tab {
   height: 100%;
 }
+.tab-menu .tabs .tab a img {
+  width: 30px;
+  height: 30px;
+  margin: 10px 0 -25px 0px;
+}
 .contents-container img {
   width: 100%;
 }
