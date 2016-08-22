@@ -1,6 +1,51 @@
+html {
+  line-height: 1.2;
+}
 .top {
   background-color: #5ddbdb;
   color: white;
   font-size: 1.3rem;
   padding: 15px !important;
+}
+.section {
+  padding: 30px !important;
+}
+.section .divider {
+  height: 2px;
+  background-color: #666666;
+}
+.section table {
+  font-size: 16px;
+  border-collapse: separate;
+  padding: 0 10px;
+}
+.section table [data-field="id"] {
+  text-align: left;
+}
+.section table [data-field="name"] {
+  text-align: center;
+}
+.section table [data-field="price"] {
+  text-align: right;
+}
+.section table td:nth-child(1) {
+  text-align: left;
+}
+.section table td:nth-child(2) {
+  text-align: center;
+}
+.section table td:nth-child(3) {
+  text-align: right;
+}
+.section table tr:last-child td {
+  color: #5ddbdb;
+  border-top: 1px solid #bcbcbc;
+  border-bottom: 2px solid #bcbcbc;
+}
+.section .cancel-btn {
+  height: 42px !important;
+  box-shadow: none !important;
+  background-color: #bcbcbc !important;
+  float: right;
+  margin: 20px 0;
 }
