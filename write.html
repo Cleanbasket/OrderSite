@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>order page</title>
+
+    	<!--Import Google Icon Font-->
+    	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    	<!--Import materialize.css-->
+    	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	    <!--Let browser know website is optimized for mobile-->
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+		<!-- My css-->
+        <link rel="stylesheet" href="css/index.css">
+    	<link rel="stylesheet" href="css/write.css">
+	</head>
+
+	<body>
+        <!-- 상단바 -->
+        <nav class="nav-top" role="navigation">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo"><img src="img/logo.png" alt="logo"></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                 <ul class="right hide-on-med-and-down"><!-- 데스크탑 화면 -->
+                    <li><a href="#">주문하기</a></li>
+                    <li><a href="#">주문조회</a></li>
+                    <li><a href="#">자주하는 질문</a></li>
+                    <li><a class="btn waves-effect waves-light" href="#">앱 다운로드</a></li>
+                 </ul>
+                 <ul class="side-nav" id="mobile-demo"><!-- 모바일 화면 상단바 -->
+                    <li><a href="#">주문하기</a></li>
+                    <li><a href="#">주문조회</a></li>
+                    <li><a href="#">자주하는 질문</a></li>
+                    <li><a class="btn waves-effect waves-light" href="#">앱 다운로드</a></li>
+                 </ul>
+           </div>
+         </nav>
+        <!-- //상단바 -->
+
+        <div class="row"> 
+            <div class="top col s12">주문서 작성</div>
+
+            <div class="section col s12">
+                <div>주문 내역</div>
+                <div class="divider"></div>
+
+                <table>
+                        <thead>
+                          <tr>
+                              <th data-field="id">품목</th>
+                              <th data-field="name">수량</th>
+                              <th data-field="price">가격</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td>생활 물빨래</td>
+                            <td>2</td>
+                            <td>₩20,000</td>
+                          </tr>
+                          <tr>
+                            <td>바지(하의)</td>
+                            <td>3</td>
+                            <td>₩9,000</td>
+                          </tr>
+                          <tr>
+                            <td>가죽 자켓(L)</td>
+                            <td>1</td>
+                            <td>₩50,000</td>
+                          </tr>
+                          <tr>
+                            <td>와이셔츠</td>
+                            <td>6</td>
+                            <td>₩12,000</td>
+                          </tr>
+                          
+                          <tr>
+                            <td>합계</td>
+                            <td></td>
+                            <td>₩91,000</td>
+                          </tr>
+                        </tbody>
+                </table>
+
+                <div class="divider"></div>
+                <button class="btn waves-effect waves-light col s4" type="submit">변경/추가</button>
+            </div>
+            
+            <div class="section col s12">
+                <div>수거 및 배달 시간 선택</div>
+                <div class="col s12">
+                    <div>수거</div>
+                    <input type="date" name="date">
+                    <input type="time" name="time">
+                </div>
+                <div class="col s12">
+                    <div>배달</div>
+                    <input type="date" name="date">
+                    <input type="time" name="time">
+                </div>
+            </div>
+
+            <div class="section col s12">
+                <div>주문 정보 입력</div>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                          <input id="name" type="text" class="validate">
+                          <label for="name">성함</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                          <input id="phone" type="tel" class="validate">
+                          <label for="phone">휴대폰 번호</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                          <input id="address" type="text" class="validate">
+                          <label for="address">주소 입력</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                          <input id="address2" type="text" class="validate">
+                          <label for="address2">상세주소 입력</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button class="btn waves-effect waves-light col s4" type="submit">변경/추가</button>        </div>
+
+
+
+        <footer class="page-footer">
+            <div class="row">
+                <div class="col s12">
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">회사소개</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">자주하는 질문</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">주문조회</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">PC 버전</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                COPYRIGHT © WASH APP KOREA. ALL RIGHTS RESERVED.
+            </div>
+        </footer>
+
+    	<!--Import jQuery before materialize.js-->
+    	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    	<script type="text/javascript" src="js/materialize.min.js"></script>
+    	<script src="js/index.js"></script>
+	</body>
+</html>
