@@ -89,30 +89,30 @@
             </div>
             
             <div class="section col s12">
-                <h5>수거 및 배달 시간 선택</h5>
-                <div class="col s12">
-                    <div>수거</div>
+                <h5 class="headline-info">수거 및 배달 시간 선택</h5>
+                <div class="select-wrapper">
+                    <div class="text">수거</div>
                     <input type="date" name="date">
                     <input type="time" name="time">
+                    <!-- <select name="pickup_time" id="pickuptime" class="pg-text-fieldR order-pickup input-group-addon" required> -->
                 </div>
-                <div class="col s12">
-                    <div>배달</div>
+                <div class="select-wrapper row">
+                    <div class="text">배달</div>
                     <input type="date" name="date">
                     <input type="time" name="time">
                 </div>
             </div>
 
+
             <div class="section col s12">
-                <h5>주문 정보 입력</h5>
-                <form class="col s12">
+                <h5 class="headline-info">주문 정보 입력</h5>
+                <form>
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s5">
                           <input id="name" type="text" class="validate">
                           <label for="name">성함</label>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s7">
                           <input id="phone" type="tel" class="validate">
                           <label for="phone">휴대폰 번호</label>
                         </div>
@@ -129,9 +129,10 @@
                           <label for="address2">상세주소 입력</label>
                         </div>
                     </div>
+                    <button class="btn waves-effect waves-light col s12" type="submit">변경/추가</button>        
                 </form>
             </div>
-            <button class="btn waves-effect waves-light col s4" type="submit">변경/추가</button>        </div>
+        </div>
 
 
 

@@ -49,3 +49,24 @@ html {
   float: right;
   margin: 20px 0;
 }
+.section .headline-info {
+  margin-bottom: 30px;
+}
+.section .select-wrapper {
+  margin-bottom: 10px;
+}
+.section .select-wrapper .text {
+  width: 16%;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 3rem;
+  padding: 0;
+  display: inline;
+  margin-right: 10px;
+}
+.section .select-wrapper input {
+  width: 40%;
+  border: 1px solid #bbb;
+  display: inline;
+  margin: 0 0 0 5px;
+}
