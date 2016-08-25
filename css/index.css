@@ -53,6 +53,12 @@ nav.nav-top .nav-wrapper a {
   width: 100%;
   height: auto;
 }
+.contents-container #laundry .laundry-qty-container {
+  position: absolute;
+  width: 100%;
+  line-height: 3rem;
+  text-align: center;
+}
 .contents-container ul li .col .col {
   padding-left: 0;
 }

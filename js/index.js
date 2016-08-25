@@ -3,6 +3,16 @@ $( document ).ready(function(){
 	$('ul.tabs').tabs(); // 품목 선택 탭 
 
 
+    // 생활 물빨래 탭 item quantity box 정렬하기  
+    var laundryQtyTop = $('.nav-top').height() + $('.tab-menu').height();
+    laundryQtyTop = laundryQtyTop + ($('.laundry-img').height()/2.7);
+    var laundryQtyLeft = ($('.laundry-img').width() - $('.laundry-qty').width())/2;
+
+    $('.laundry-qty-container').css('top',  laundryQtyTop + 'px');
+    $('.laundry-qty').css('left', laundryQtyLeft + 'px');
+
+
+
 // click이벤트랑 touchstart 이벤트 둘 다 걸어야할듯 
 
 	// + 누를 경우 
