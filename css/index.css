@@ -67,6 +67,7 @@ nav.nav-top .nav-wrapper a {
   border-radius: 3px;
   display: block;
   position: relative;
+  right: -20px !important;
 }
 .qty-box span {
   float: left;
@@ -88,4 +89,5 @@ nav.nav-top .nav-wrapper a {
 .order-info button {
   height: 42px !important;
   box-shadow: none !important;
+  right: -20px !important;
 }

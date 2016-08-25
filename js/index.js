@@ -60,7 +60,7 @@ $( document ).ready(function(){
     // html에 추가 
     var itemsHtml = "";
     for(var i = 0; i < itemsList.length; i++){
-        itemsHtml += "<ul class='row'><li class= 'col s12'><div class='col s8'><div class='col s12'><div class='left'>" + itemsList[i].name + "</div><div class='right'>₩" + itemsList[i].price + "</div></div></div><div class='qty-box col s4'><span class='dec left-set'>–</span><span class='qty center-set'>" + itemsList[i].pty + "</span><span class='inc right-set'>+</span></div></li></ul>";
+        itemsHtml += "<ul class='row'><li class= 'col s12'><div class='col s8'><div class='col s12'><div class='left'>" + itemsList[i].name + "</div><div class='right'>₩" + itemsList[i].price + "</div></div></div><div class='qty-box col s3'><span class='dec left-set'>–</span><span class='qty center-set'>" + itemsList[i].pty + "</span><span class='inc right-set'>+</span></div></li></ul>";
     }
     $('#business').append(itemsHtml);
 
