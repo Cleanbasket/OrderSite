@@ -1,0 +1,42 @@
+.bg_box {
+  position: relative;
+  z-index: -1;
+}
+.bg_box .bg_img {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+}
+.content-wrapper {
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.content-wrapper .content {
+  position: relative;
+  margin: 0 auto;
+  width: 90%;
+}
+.content-wrapper .content .title {
+  font-size: 2rem;
+  padding: 10px;
+}
+.content-wrapper .content p {
+  font-size: 1rem;
+}
+.content-wrapper .content input {
+  width: 70%;
+  border: 1px solid #bbb;
+  background-color: #fff;
+  padding-left: 15px;
+}
+.content-wrapper .content .trace-btn {
+  display: block;
+  width: 35%;
+  height: 45px;
+  font-size: 1rem;
+  margin: 0 auto;
+  box-shadow: none !important;
+}
