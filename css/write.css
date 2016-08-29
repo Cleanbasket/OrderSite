@@ -70,3 +70,7 @@ html {
   display: inline;
   margin: 0 0 0 5px;
 }
+.section .input-wrapper input:focus {
+  border-bottom: 1px solid #5ddbdb !important;
+  box-shadow: 0 1px 0 0 #5ddbdb !important;
+}

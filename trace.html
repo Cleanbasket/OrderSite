@@ -49,10 +49,23 @@
                     <div class="title">주문조회</div>
                     <p>주문시 작성하셨던 휴대폰 번호로<br>세탁 주문 현황을 조회하실 수 있습니다.</p>
                     <input id="phone" type="number" class="validate" placeholder="휴대폰 번호">
-                    <button class="trace-btn btn waves-effect waves-light" type="submit">주문확인</button> 
+                    <a class="trace-btn modal-trigger btn waves-effect waves-light" href="#modal-trace">주문확인</a> 
                 </div>
             </div>
         </div>
+
+        <!-- 모달 -->
+        <div id="modal-trace" class="modal">
+            <div class="modal-content">
+                <i class="close-btn right material-icons">close</i>
+                <div class="caption center">최근 주문 조회</div>
+
+    
+            </div>
+        </div>
+
+
+
 
         <footer class="page-footer">
             <div class="row">

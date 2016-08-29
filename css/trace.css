@@ -36,7 +36,27 @@
   display: block;
   width: 35%;
   height: 45px;
+  line-height: 45px;
+  vertical-align: middle;
   font-size: 1rem;
   margin: 0 auto;
   box-shadow: none !important;
+  background-color: #5ddbdb;
+}
+.modal {
+  max-width: 400px !important;
+  max-height: 100%;
+  overflow-y: auto;
+}
+.modal .close-btn {
+  width: 15px;
+  cursor: pointer;
+}
+.modal .caption {
+  font-weight: bold;
+}
+.modal .modal-box {
+  padding: 30px;
+  position: relative;
+  top: 15px;
 }
