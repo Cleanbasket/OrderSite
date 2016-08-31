@@ -42,31 +42,47 @@ $( document ).ready(function(){
     });
 
 
-//    $('.contents-container').children()[0] ~ [9]
-    
-    // Item라는 객체 생성 
-    function Item(name, price, pty){
-        this.name = name;
-        this.price = price;
-        this.pty = pty;
+    // 선택한 탭의 index값(카테고리 번호)을 찾아서 ajaxtext() 실행 
+    $('.tab').click(function(e){
+        var categoryNum = $(this).index() + 1;
+        ajaxtest(categoryNum);
+    });
+
+    // 선택한 탭의 품목들을 보여줌
+    var ajaxtest = function(categoryNum){
+        var ptyTest = 0;
+        var itemsHtml = "";
+        
+        $.ajax({                  
+            type: "GET",
+            url: "http://localhost:8080/wash/item",
+            dataType: "json",
+            success: function(resData) {  
+                if (resData.constant == 1){ // 1 = Success
+                    console.log("ajaxtest 드러와쪄영");
+
+                    var data = $.parseJSON(resData.data);
+                    
+                    for(var i = 0; i < data.orderItems.length; i++){
+                        if(data.orderItems[i].category == categoryNum){
+                            itemsHtml += "<ul class='row'><li class= 'col s12'><div class='col s8'><div class='col s12'><div class='left'>" + data.orderItems[i].name + "</div><div class='right'>₩" + data.orderItems[i].price + "</div></div></div><div class='qty-box col s3'><span class='dec left-set'>–</span><span class='qty center-set'>" + ptyTest + "</span><span class='inc right-set'>+</span></div></li></ul>";
+                            // console.log(data.categories[i].name); 
+                        }
+                    }
+
+                    // html 추가 
+                    $('#' + data.categories[categoryNum].name).append(itemsHtml);
+                    console.log("ajaxtest 나가께영");
+                }
+           },
+           error: function(res){
+                console.log("ajaxtest 실패라능");
+                console.log(res.state, res.error);
+           }
+        });
+
     }
-
-    var itemsList = [
-        new Item("와이셔츠", 2000, 0),
-        new Item("정장 한 벌", 6000, 0),
-        new Item("정장 상의", 3500, 0),
-        new Item("정장 하의", 3500, 0),
-        new Item("여성 정장 상의", 3500, 0),
-        new Item("여성 정장 하의", 3500, 0),
-    ];
-
-
-    // html에 추가 
-    var itemsHtml = "";
-    for(var i = 0; i < itemsList.length; i++){
-        itemsHtml += "<ul class='row'><li class= 'col s12'><div class='col s8'><div class='col s12'><div class='left'>" + itemsList[i].name + "</div><div class='right'>₩" + itemsList[i].price + "</div></div></div><div class='qty-box col s3'><span class='dec left-set'>–</span><span class='qty center-set'>" + itemsList[i].pty + "</span><span class='inc right-set'>+</span></div></li></ul>";
-    }
-    $('#business').append(itemsHtml);
+    ajaxtest();
 
 });
 
