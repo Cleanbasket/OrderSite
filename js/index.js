@@ -59,8 +59,6 @@ $( document ).ready(function(){
             dataType: "json",
             success: function(resData) {  
                 if (resData.constant == 1){ // 1 = Success
-                    console.log("ajaxtest 드러와쪄영");
-
                     var data = $.parseJSON(resData.data);
                     
                     for(var i = 0; i < data.orderItems.length; i++){
@@ -70,9 +68,13 @@ $( document ).ready(function(){
                         }
                     }
 
-                    // html 추가 
-                    $('#' + data.categories[categoryNum].name).append(itemsHtml);
-                    console.log("ajaxtest 나가께영");
+                    if ($('#' + data.categories[categoryNum-1].name).find('ul').length == 0){
+                        // 클릭한 카테고리 번호와 ajax통신으로 받아온 데이터의 카테고리 번호가 일치한지 체크한 후 
+                        if (data.categories[categoryNum-1].id == categoryNum){
+                            // html 넣기  
+                            $('#' + data.categories[categoryNum-1].name).append(itemsHtml);
+                        }
+                    }
                 }
            },
            error: function(res){
