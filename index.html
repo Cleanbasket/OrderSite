@@ -98,19 +98,20 @@
             <!-- 선택된 품목별 컨텐츠 -->
             <div class="contents-container">
 
-                <div id="laundry">
+                <div id="laundry" class="contents">
                     <img class="laundry-img" src="img/tab_1.png" alt="laundry">
                     <div class="laundry-qty-container">
-                        <div class="laundry-qty qty-box col s3">
+                        <div class="laundry-qty qty-box col s3" data-price="10000">
                             <span class="dec left-set">–</span>
                             <span class="qty center-set">0</span>
                             <span class="inc right-set">+</span>
+                            <div class="subtotal-price" style="display: none">0</div>
                         </div>
                         <div class="col s12">₩10,000/수거가방</div>
                     </div>
                 </div>
 
-                <div id="business">
+                <div id="business" class="contents">
                     <img src="img/tap_2.png" alt="business">
 
                     <!-- <ul class="row">
@@ -121,37 +122,38 @@
                                     <div class="right">₩2,000</div>
                                 </div>
                             </div>
-                            <div class="qty-box col s3">
+                            <div class="qty-box col s3" data-price="2000">
                                 <span class="dec left-set">–</span>
                                 <span class="qty center-set">0</span>
                                 <span class="inc right-set">+</span>
+                                <div class="subtotal-price" style="display: none">0</div>
                             </div>
                         </li>
                     </ul> -->
 
                 </div>
-                <div id="top">
+                <div id="top" class="contents">
                     <img src="img/tap_3.png" alt="top">
                 </div>
-                <div id="bottom">
+                <div id="bottom" class="contents">
                     <img src="img/tap_4.png" alt="bottom">
                 </div>
-                <div id="outer">
+                <div id="outer" class="contents">
                     <img src="img/tap_5.png" alt="outer">
                 </div>
-                <div id="etc">
+                <div id="etc" class="contents">
                     <img src="img/tap_6.png" alt="etc">
                 </div>
-                <div id="bedclothes">
+                <div id="bedclothes" class="contents">
                     <img src="img/tap_7.png" alt="bedclothes">
                 </div>
-                <div id="footwear">
+                <div id="footwear" class="contents">
                     <img src="img/tap_8.png" alt="footwear">
                 </div>  
-                <div id="bag">
+                <div id="bag" class="contents">
                     <img src="img/tap_9.png" alt="bag">
                 </div>  
-                <div id="add">
+                <div id="add" class="contents">
                     <img src="img/tap_10.png" alt="add">
                 </div>  
             </div>
@@ -163,11 +165,11 @@
                 <div class="col s8">
                     <div class="col s12">
                         <div class="left">품목</div>
-                        <div class="right">0개</div>
+                        <div class="right total-number">0개</div>
                     </div>
                     <div class="col s12">
                         <div class="left">합계</div>
-                        <div class="right">0원</div>
+                        <div class="right total-price">0원</div>
                     </div>
                 </div>
                 <button class="btn waves-effect waves-light col s3" type="submit">주문하기</button>
@@ -193,6 +195,7 @@
     	<!--Import jQuery before materialize.js-->
     	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     	<script type="text/javascript" src="js/materialize.min.js"></script>
-    	<script src="js/index.js"></script>
+        <script src="js/index.js"></script>
+    	<script src="js/order.js"></script>
 	</body>
 </html>

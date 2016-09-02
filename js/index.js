@@ -17,40 +17,18 @@ $( document ).ready(function(){
 
 
 
+
 // click이벤트랑 touchstart 이벤트 둘 다 걸어야할듯 
-
-	// + 누를 경우 
-    $('.inc').click(function(e){
-    	var currentVal = parseInt($('.qty').text());
-
-        if (!isNaN(currentVal)) {
-            $('.qty').text(currentVal + 1);
-        } else {
-        	$('.qty').text(0);
-        }
-    });
-
-    // - 누를 경우
-    $('.dec').click(function(e) {
-    	var currentVal = parseInt($('.qty').text());
-
-        if (!isNaN(currentVal) && currentVal > 0) {
-    		$('.qty').text(currentVal - 1);
-        } else {
-        	$('.qty').text(0);
-        }
-    });
-
 
     // 선택한 탭의 index값(카테고리 번호)을 찾아서 ajaxtext() 실행 
     $('.tab').click(function(e){
         var categoryNum = $(this).index() + 1;
-        ajaxtest(categoryNum);
+        showItemList(categoryNum);
     });
 
     // 선택한 탭의 품목들을 보여줌
-    var ajaxtest = function(categoryNum){
-        var ptyTest = 0;
+    var showItemList = function(categoryNum){
+        // var ptyTest = 0;
         var itemsHtml = "";
         
         $.ajax({                  
@@ -61,31 +39,31 @@ $( document ).ready(function(){
                 if (resData.constant == 1){ // 1 = Success
                     var data = $.parseJSON(resData.data);
                     
-                    for(var i = 0; i < data.orderItems.length; i++){
-                        if(data.orderItems[i].category == categoryNum){
-                            itemsHtml += "<ul class='row'><li class= 'col s12'><div class='col s8'><div class='col s12'><div class='left'>" + data.orderItems[i].name + "</div><div class='right'>₩" + data.orderItems[i].price + "</div></div></div><div class='qty-box col s3'><span class='dec left-set'>–</span><span class='qty center-set'>" + ptyTest + "</span><span class='inc right-set'>+</span></div></li></ul>";
-                            // console.log(data.categories[i].name); 
-                        }
-                    }
+                    // '생활물빨래'탭이 아니어야 하고, 품목 리스트는 탭 클릭 최초 1회만 html에 추가해야한다   
+                    if (categoryNum !== 1 && $('#' + data.categories[categoryNum-1].name).find('ul').length == 0){                    
 
-                    if ($('#' + data.categories[categoryNum-1].name).find('ul').length == 0){
+                        for(var i = 0; i < data.orderItems.length; i++){
+                            if(data.orderItems[i].category == categoryNum){
+                                itemsHtml += "<ul class='row'><li class= 'col s12'><div class='col s8'><div class='col s12'><div class='left'>" + data.orderItems[i].name + "</div><div class='right'>₩" + data.orderItems[i].price + "</div></div></div><div class='qty-box col s3' data-price='" + data.orderItems[i].price + "'><span class='dec left-set'>–</span><span class='qty center-set'>0</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div></li></ul>";
+                            }
+                        }
+
                         // 클릭한 카테고리 번호와 ajax통신으로 받아온 데이터의 카테고리 번호가 일치한지 체크한 후 
                         if (data.categories[categoryNum-1].id == categoryNum){
                             // html 넣기  
                             $('#' + data.categories[categoryNum-1].name).append(itemsHtml);
-                        }
+                        }   
                     }
                 }
            },
            error: function(res){
-                console.log("ajaxtest 실패라능");
+                console.log("showItemList 실패라능");
                 console.log(res.state, res.error);
            }
         });
-
     }
-    ajaxtest();
 
+    showItemList();
 });
 
 
