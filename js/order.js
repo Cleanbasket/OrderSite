@@ -49,22 +49,52 @@ var order = {
       totalPrice += parseInt( $(products[i]).find(".subtotal-price").html() );
       totalNumber += parseInt( $(products[i]).find(".qty").html() );
     }
-
+ 
+    $(".order-info").find(".total-price").data("total-price", totalPrice);
+    $(".order-info").find(".total-number").data("total-number", totalNumber);
     $(".order-info").find(".total-price").html(totalPrice + "원");
     $(".order-info").find(".total-number").html(totalNumber + "개");
+  },
+
+  setItemList: function(){
+    var products = $(".qty-box"),
+        items = $(".item"),
+        totalNumber = $(".total-number").data("total-number"),
+        totalPrice = $(".total-price").data("total-price");
+
+
+    // 1. 품목이 하나도 없을 경우
+    // 2. 합계금액이 10000원 미만일 경우
+
+    
+    // 품목 총 개수, 품목 총 합계 금액, 선택한 품목 리스트 
+    var itemData = {
+      "totalNumber": totalNumber,
+      "totalPrice": totalPrice,
+      "itemList": []
+    };
+
+    for(var i = 0; i < products.length; i+=1){
+      if($(products[i]).find(".qty").html() > 0){
+        // itemData.itemList[totalNumber]
+      }
+    }
+    var session = window.sessionStorage,
+        dataString = JSON.stringify(itemData);
+    console.log(dataString);
+
+    // sessionStorage에 저장 
+    session.setItem("cart", dataString);
   },
 
   // 함수 연결 
   attachEvents: function () {
     "use strict";
 
-    // 동적으로 생성된 elements라서 이벤트 적용이 안됨 
-    // $(".inc").on("click", order.increaseItem);
-    // $(".dec").on("click", order.decreaseItem);
-
-    // 동적으로 생성되는 elements에 이벤트를 적용하는 방법 
+    // 동적으로 생성되는 elements에 이벤트 연결 
     $(document).on("click",".inc",order.increaseItem);
     $(document).on("click",".dec",order.decreaseItem);
+    $(document).on("click",".cart-btn",order.setItemList);
   }
 };
 

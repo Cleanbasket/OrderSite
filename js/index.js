@@ -44,7 +44,7 @@ $( document ).ready(function(){
 
                         for(var i = 0; i < data.orderItems.length; i++){
                             if(data.orderItems[i].category == categoryNum){
-                                itemsHtml += "<ul class='row'><li class= 'col s12'><div class='item col'><div class='col s12'><div class='left'>" + data.orderItems[i].name + "</div><div class='right'>₩" + data.orderItems[i].price + "</div></div></div><div class='qty-box col' data-price='" + data.orderItems[i].price + "'><span class='dec left-set'>–</span><span class='qty center-set'>0</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div></li></ul>";
+                                itemsHtml += "<ul class='row'><li class= 'item-box col s12'><div class='item col'><div class='col s12'><div class='left'>" + data.orderItems[i].name + "</div><div class='right'>₩" + data.orderItems[i].price + "</div></div></div><div class='qty-box col' data-price='" + data.orderItems[i].price + "'><span class='dec left-set'>–</span><span class='qty center-set'>0</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div></li></ul>";
                             }
                         }
 
