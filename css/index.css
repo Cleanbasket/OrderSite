@@ -63,35 +63,52 @@ nav.nav-top .nav-wrapper a {
   line-height: 3rem;
   text-align: center;
 }
-.contents-container ul li .col .col {
+.contents-container .item {
+  width: 68%;
+}
+.contents-container .item .col {
   padding-left: 0;
 }
-.qty-box {
+.contents-container .qty-box {
+  width: 30%;
   border: 1px solid #bcbcbc;
   border-radius: 3px;
   display: block;
   position: relative;
-  right: -20px !important;
 }
-.qty-box span {
+.contents-container .qty-box span {
   float: left;
   line-height: 1.5;
   width: calc(33.33333333%);
 }
-.qty-box .left-set {
+.contents-container .qty-box .left-set {
   text-align: left;
 }
-.qty-box .center-set {
+.contents-container .qty-box .center-set {
   text-align: center;
 }
-.qty-box .right-set {
+.contents-container .qty-box .right-set {
   text-align: right;
 }
-.order-info .col .col {
+.order-info {
+  margin-bottom: 0;
+  padding: 15px;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  height: 72px;
+  bottom: 0;
+  z-index: 100;
+  border-top: 1px solid black;
+}
+.order-info .cart {
+  width: 68%;
+}
+.order-info .cart .col {
   padding-left: 0 !important;
 }
-.order-info button {
+.order-info .cart-btn {
+  width: 32%;
   height: 42px !important;
   box-shadow: none !important;
-  right: -20px !important;
 }
