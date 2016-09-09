@@ -80,11 +80,12 @@ var order = {
 
     for(var i = 0; i < items.length; i+=1){
       if($(items[i]).find(".qty").html() > 0){
+        var categoryName = $(items[i]).parent().attr('id');
         var name = $(items[i]).find(".item-name").html();
         var qty = $(items[i]).find(".qty").html();
         var subtotalPrice = $(items[i]).find(".subtotal-price").html();
 
-        itemData.itemList.push({"name": name, "qty": qty, "subtotalPrice": subtotalPrice})
+        itemData.itemList.push({"categoryName" : categoryName, "name": name, "qty": qty, "subtotalPrice": subtotalPrice})
       }
     }
     var session = window.sessionStorage,
@@ -109,8 +110,4 @@ var order = {
   }
 };
 
-session = window.sessionStorage,
-data = JSON.parse(session.getItem('cart'));
-
-console.log(data);
 order.attachEvents();

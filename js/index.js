@@ -41,19 +41,19 @@ $( document ).ready(function(){
                     
                     // '생활물빨래'탭이 아니어야 하고, 품목 리스트는 탭 클릭 최초 1회만 html에 추가해야한다   
                     if (categoryNum !== 1 && $('#' + data.categories[categoryNum-1].name).find('ul').length == 0){                    
-
                         for(var i = 0; i < data.orderItems.length; i++){
                             if(data.orderItems[i].category == categoryNum){
                                 itemsHtml += "<ul class='row'><li class= 'item-box col s12'><div class='item col'><div class='col s12'><div class='left item-name'>" + data.orderItems[i].name + "</div><div class='right'>₩" + data.orderItems[i].price + "</div></div></div><div class='qty-box col' data-price='" + data.orderItems[i].price + "'><span class='dec left-set'>–</span><span class='qty center-set'>0</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div></li></ul>";
                             }
                         }
-
                         // 클릭한 카테고리 번호와 ajax통신으로 받아온 데이터의 카테고리 번호가 일치한지 체크한 후 
                         if (data.categories[categoryNum-1].id == categoryNum){
                             // html 넣기  
                             $('#' + data.categories[categoryNum-1].name).append(itemsHtml);
                         }   
                     }
+
+                    updateItemList(data, categoryNum);
                 }
            },
            error: function(res){
@@ -63,6 +63,24 @@ $( document ).ready(function(){
         });
     }
 
+    var updateItemList = function(data, categoryNum){
+        // 세션스토리지 검사해서 qty 값 추가
+        var session = window.sessionStorage;
+        if(session.getItem("cart")){ // sessionStorage 'cart'가 존재하면, 
+            console.log('있뜜');
+
+            var cartData = JSON.parse(session.getItem('cart'));
+
+            for(var i = 0; i < cartData.itemList.length; i++){
+                if(cartData.itemList[i].categoryName == data.categories[categoryNum-1].name){
+                    // 지금 램 부족 문제로..... 실행이 안됨. 일단 여기까지 커밋하고, 주말에 js코드 리팩토링좀 하겠습니당 ^^~
+                }
+            }         
+        
+        } else { 
+            console.log('없음');
+        }
+    }
     showItemList();
 });
 
