@@ -56,17 +56,21 @@ var order = {
     $(".order-info").find(".total-number").html(totalNumber + "개");
   },
 
+  checkTotalPrice: function(){
+    var totalPrice = $(".total-price").data("total-price");
+
+    if (totalPrice == undefined || totalPrice < 10000){
+      alert("최소 주문 금액은 10,000원 입니다!");
+    } else {
+      order.setItemList();
+    }
+  },
+
   setItemList: function(){
-    var products = $(".qty-box"),
-        items = $(".item"),
+    var items = $(".item-box"),
         totalNumber = $(".total-number").data("total-number"),
         totalPrice = $(".total-price").data("total-price");
 
-
-    // 1. 품목이 하나도 없을 경우
-    // 2. 합계금액이 10000원 미만일 경우
-
-    
     // 품목 총 개수, 품목 총 합계 금액, 선택한 품목 리스트 
     var itemData = {
       "totalNumber": totalNumber,
@@ -74,17 +78,24 @@ var order = {
       "itemList": []
     };
 
-    for(var i = 0; i < products.length; i+=1){
-      if($(products[i]).find(".qty").html() > 0){
-        // itemData.itemList[totalNumber]
+    for(var i = 0; i < items.length; i+=1){
+      if($(items[i]).find(".qty").html() > 0){
+        var name = $(items[i]).find(".item-name").html();
+        var qty = $(items[i]).find(".qty").html();
+        var subtotalPrice = $(items[i]).find(".subtotal-price").html();
+
+        itemData.itemList.push({"name": name, "qty": qty, "subtotalPrice": subtotalPrice})
       }
     }
     var session = window.sessionStorage,
         dataString = JSON.stringify(itemData);
-    console.log(dataString);
+    // console.log(dataString);
 
     // sessionStorage에 저장 
     session.setItem("cart", dataString);
+
+    // 주문서 작성 페이지로 이동
+    window.location.href = 'write.html';
   },
 
   // 함수 연결 
@@ -94,8 +105,12 @@ var order = {
     // 동적으로 생성되는 elements에 이벤트 연결 
     $(document).on("click",".inc",order.increaseItem);
     $(document).on("click",".dec",order.decreaseItem);
-    $(document).on("click",".cart-btn",order.setItemList);
+    $(document).on("click",".cart-btn",order.checkTotalPrice);
   }
 };
 
+session = window.sessionStorage,
+data = JSON.parse(session.getItem('cart'));
+
+console.log(data);
 order.attachEvents();
