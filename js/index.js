@@ -1,3 +1,7 @@
+var app = {
+    
+}
+
 $( document ).ready(function(){
 	$('.button-collapse').sideNav(); // 반응형. 모바일 화면 상단바
 	$('ul.tabs').tabs(); // 품목 선택 탭 
@@ -18,7 +22,7 @@ $( document ).ready(function(){
 
 
 
-// click이벤트랑 touchstart 이벤트 둘 다 걸어야할듯 
+// click, touchstart
 
     // 선택한 탭의 index값(카테고리 번호)을 찾아서 ajaxtext() 실행 
     $('.tab').click(function(e){
@@ -43,7 +47,7 @@ $( document ).ready(function(){
                     if (categoryNum !== 1 && $('#' + data.categories[categoryNum-1].name).find('ul').length == 0){                    
                         for(var i = 0; i < data.orderItems.length; i++){
                             if(data.orderItems[i].category == categoryNum){
-                                itemsHtml += "<ul class='row'><li class= 'item-box col s12'><div class='item col'><div class='col s12'><div class='left item-name'>" + data.orderItems[i].name + "</div><div class='right'>₩" + data.orderItems[i].price + "</div></div></div><div class='qty-box col' data-price='" + data.orderItems[i].price + "'><span class='dec left-set'>–</span><span class='qty center-set'>0</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div></li></ul>";
+                                itemsHtml += "<ul class='item-box row'><li class= 'col s12'><div class='item col'><div class='col s12'><div class='left item-name'>" + data.orderItems[i].name + "</div><div class='right'>₩" + data.orderItems[i].price + "</div></div></div><div class='qty-box col' data-price='" + data.orderItems[i].price + "'><span class='dec left-set'>–</span><span class='qty center-set'>0</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div></li></ul>";
                             }
                         }
                         // 클릭한 카테고리 번호와 ajax통신으로 받아온 데이터의 카테고리 번호가 일치한지 체크한 후 
@@ -72,8 +76,10 @@ $( document ).ready(function(){
             var cartData = JSON.parse(session.getItem('cart'));
 
             for(var i = 0; i < cartData.itemList.length; i++){
+                console.log(cartData.itemList[i].categoryName );
                 if(cartData.itemList[i].categoryName == data.categories[categoryNum-1].name){
-                    // 지금 램 부족 문제로..... 실행이 안됨. 일단 여기까지 커밋하고, 주말에 js코드 리팩토링좀 하겠습니당 ^^~
+                    // 뀨.. 
+                    // cartData.itemList[i].qty
                 }
             }         
         

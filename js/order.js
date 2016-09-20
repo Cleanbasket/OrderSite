@@ -94,7 +94,7 @@ var order = {
 
     // sessionStorage에 저장 
     session.setItem("cart", dataString);
-
+    // session.clear();
     // 주문서 작성 페이지로 이동
     window.location.href = 'write.html';
   },
