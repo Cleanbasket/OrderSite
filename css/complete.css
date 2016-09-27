@@ -1,3 +1,7 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+html {
+  font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+}
 .bg_box {
   position: relative;
   z-index: -1;

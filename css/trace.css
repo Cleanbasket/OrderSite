@@ -1,3 +1,7 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+html {
+  font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+}
 .bg_box {
   position: relative;
   z-index: -1;
@@ -47,16 +51,87 @@
   max-width: 400px !important;
   max-height: 100%;
   overflow-y: auto;
+  border-radius: 8px;
 }
 .modal .close-btn {
   width: 15px;
+  height: 15px;
+  position: absolute;
+  right: 24px;
   cursor: pointer;
 }
 .modal .caption {
   font-weight: bold;
+  padding: 25px 0;
 }
-.modal .modal-box {
-  padding: 30px;
+.modal img {
+  width: 20%;
+  margin: 10px auto;
+  display: block;
+}
+.modal .subtitle {
+  font-size: 2rem;
+  line-height: 35px;
+  font-weight: 200;
+  margin: 10px auto;
+}
+.progress_bar {
+  max-width: 29em;
+  width: 100%;
+  padding: 0 18px;
+  height: 2em;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  /* change font size only to scale*/
+}
+.progress_bar li {
+  width: 25%;
+  float: left;
+  height: 100%;
+  list-style: none;
   position: relative;
-  top: 15px;
+  margin: 0;
+  apadding: 0;
+}
+.progress_bar li span {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #8ac148;
+  height: .4em;
+  z-index: 1;
+}
+.progress_bar li.activated:before {
+  background: #fff;
+  border: 0.3em solid #8ac148;
+  box-sizing: border-box;
+}
+.progress_bar li:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #8ac148;
+  width: 2em;
+  height: 2em;
+  border-radius: 2em;
+  z-index: 2;
+}
+.progress_bar li:last-child:after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: -2em;
+  top: 0;
+  background: #8ac148;
+  width: 2em;
+  height: 2em;
+  border-radius: 2em;
+  z-index: 2;
 }
