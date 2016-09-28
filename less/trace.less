@@ -84,74 +84,90 @@
 		font-size: 2rem;
 		line-height: 35px;
 		font-weight: 200;
-		margin: 10px auto;
-	}
-}
-
-
-
-.progress_bar{
-	max-width: 29em;
-	width: 100%;
-	padding: 0 18px;
-	height: 2em;
-	margin: 0;
-	padding: 0;
-	font-size: 10px; /* change font size only to scale*/
-	li{
-	  width: 25%;
-	  float: left;
-	  height: 100%;
-	  list-style: none;
-	  position: relative;
-	  margin: 0;a
-	  padding: 0;
+		margin: 20px auto;
 	}
 
-	li span{
-	  position: absolute;
-	  display: block;
-	  top: 0;
-	  bottom: 0;
-	  left: 0;
-	  right: 0;
-	  margin: auto;
-	  background: #8ac148;
-	  height: .4em;
-	  z-index: 1;
+	.progress-bar {
+		box-sizing: border-box;
+		// margin-top: 20px;
+		margin: 30px auto;
+	    width: 100%;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    padding: 0 30px;
+		height: 55px;
+
+		.step {
+			text-align: center;
+			-webkit-box-flex: 0;
+			-webkit-flex-grow: 0;
+			-ms-flex-positive: 0;
+			flex-grow: 0;
+			-webkit-flex-shrink: 0;
+			-ms-flex-negative: 0;
+			flex-shrink: 0;
+		
+			.circle {
+				width: 16px;
+				height: 16px;
+				border-radius: 50%;
+				margin: 0 auto;
+				border: 1px solid #b3b3b3;
+
+				.inner-circle {
+					background: @primary;
+				    width: 8px;
+				    height: 8px;
+				    border-radius: 50%;
+				    margin: 3px auto 0px auto;
+				    display: block;
+				}
+			}
+
+			.progress-name {
+				font-weight: 200;
+				color: #585858;
+				line-height: 16px;
+				margin-top: 10px;
+			}
+		}
+
+		.bar {
+			height: 1px;
+		    background: #b3b3b3;
+		    min-width: 20px;
+		    margin-top: 8px;
+		    -webkit-box-flex: 1;
+		    -webkit-flex-grow: 1;
+		    -ms-flex-positive: 1;
+		    flex-grow: 1;
+		    -webkit-flex-shrink: 1;
+		    -ms-flex-negative: 1;
+		    flex-shrink: 1;
+		    width: auto;
+		    position: relative;
+		    margin-left: -5px;
+		    margin-right: -5px;
+		}
 	}
 
-	li.activated:before{
-	  background: #fff;
-	  border: 0.3em solid #8ac148;
-	  box-sizing: border-box;
+	.divider {
+		margin: 0 -30px;
 	}
 
+	.my-order-info {
+		font-size: 12px;
+		margin-top: 14px;
+		margin-bottom: -10px;
 
-	li:before{
-	    content: '';
-	    display: block;
-	    position: absolute;
-	    left: 0;
-	    top: 0;
-	    background: #8ac148;
-	    width: 2em;
-	    height: 2em;
-	    border-radius: 2em;
-	    z-index: 2;
-	}
-
-	li:last-child:after{
-	    content: '';
-	    display: block;
-	    position: absolute;
-	    right: -2em;
-	    top: 0;
-	    background: #8ac148;
-	    width: 2em;
-	    height: 2em;
-	    border-radius: 2em;
-	    z-index: 2;
+		td {
+			padding: 10px 5px;
+		}
+		td:nth-child(1){
+			font-weight: bold;
+		}
 	}
 }
 
