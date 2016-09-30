@@ -89,7 +89,7 @@ var storage = {
           dataType: "json",
           success: function(resData) { 
             if (resData.constant == 1){ // 1 = Success 
-              this.meta = $.parseJSON(resData.data);
+              storage.meta = $.parseJSON(resData.data);
             }
           }
       });
@@ -103,7 +103,7 @@ var storage = {
 
   /* this.meta의 'orderItems'를 가져온 후, 해당 'category'에 있는 품목들을 리턴하는 함수 */
   getMetaOrderItems: function(category) {
-    var result_items = {};
+    var result_items = [];
 
     for (var itemId in this.meta.orderItems) {
       var item = this.meta.orderItems[itemId];
@@ -122,5 +122,3 @@ var storage = {
   /* user db */
   datas: null
 };
-
-storage.init();
