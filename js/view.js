@@ -15,12 +15,15 @@ var view = {
 
   // draw html
   draw: function() {
+    // debugger;
     var _this = this;
+    console.log(_this);
 
     var wrapper = $('.main');
-    var viewCategories = wrapper.find('.view-categories');
+    var viewCategories = wrapper.find('.tab-menu');
 
     var categories = storage.getMetaCategories();
+
     for (var categoryId in categories) {
       var category = categories[categoryId]; // { "name": "라운더리" }
 
@@ -28,7 +31,9 @@ var view = {
       viewCategory
         .html(category.name)
         .data('category', categoryId);
+        console.log(categoryId);
 
+      // 카테고리 메뉴에서 클릭 시
       viewCategory.click(function() {
         var categoryId = parseInt($(this).data('category')) + 1;
         
@@ -65,9 +70,7 @@ var view = {
      // app
       viewItem.click(function() {
         var itemId = $(this).data('itemId');
-
-        storage.increaseCartItem(itemId);
-        view.drawItem(category);
+        app.increaseCartItem(itemId, category);
       });
       // app end
 
