@@ -14,13 +14,17 @@
 
 		<!-- My css-->
     	<link rel="stylesheet" href="css/index.css">
+
+        <!-- Link Swiper's CSS -->
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css"> -->
+
 	</head>
 
 	<body>
         <!-- 상단바 -->
         <nav class="nav-top" role="navigation">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo"><img src="img/logo.png" alt="logo"></a>
+                <a href="#" class="brand-logo"><img src="img/cb_logo.svg" alt="logo"></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                  <ul class="right hide-on-med-and-down"><!-- 데스크탑 화면 -->
                     <li><a href="#">주문하기</a></li>
@@ -96,67 +100,78 @@
             </div>
 
             <!-- 선택된 품목별 컨텐츠 -->
-            <div class="contents-container">
+            <div class="contents-container swiper-container">
+                <div class="swiper-wrapper">
 
-                <div id="laundry" class="contents">
-                    <img class="laundry-img" src="img/tab_1.png" alt="laundry">
-                    <div class="laundry-qty-container item-box">
-                        <div class="laundry-qty qty-box col s3" data-price="10000">
-                            <span class="dec left-set">–</span>
-                            <span class="qty center-set">0</span>
-                            <span class="inc right-set">+</span>
-                            <div class="item-name" style="display: none">생활 물빨래</div>
-                            <div class="subtotal-price" style="display: none">0</div>
-                        </div>
-                        <div class="col s12">₩10,000/수거가방</div>
-                    </div>
-                </div>
-
-                <div id="business" class="contents">
-                    <img src="img/tap_2.png" alt="business">
-
-                   <!--  <ul class="item-box row">
-                        <li class= "col s12">
-                            <div class="item col">
-                                <div class="col s12">
-                                    <div class="left item-name">test</div>
-                                    <div class="right">₩2,000</div>
-                                </div>
-                            </div>
-                            <div class="qty-box col" data-price="2000">
+                    <div id="laundry" class="contents swiper-slide">
+                        <img class="laundry-img" src="img/tab_1.png" alt="laundry">
+                        <div class="laundry-qty-container item-box">
+                            <div class="laundry-qty qty-box col s3" data-price="10000">
                                 <span class="dec left-set">–</span>
                                 <span class="qty center-set">0</span>
                                 <span class="inc right-set">+</span>
+                                <div class="item-name" style="display: none">생활 물빨래</div>
                                 <div class="subtotal-price" style="display: none">0</div>
                             </div>
-                        </li>
-                    </ul> -->
+                            <div class="col s12">₩10,000/수거가방</div>
+                        </div>
+                    </div>
 
+                    <div id="business" class="contents swiper-slide">
+                        <img src="img/tap_2.png" alt="business">
+                        <div id="business-box">
+                        <ul class="item-box row">
+                           <!--  <li class= "col s12">
+                                <div class="item col">
+                                    <div class="col s12">
+                                        <div class="left item-name">test</div>
+                                        <div class="right">₩2,000</div>
+                                    </div>
+                                </div>
+                                <div class="qty-box col" data-price="2000">
+                                    <span class="dec left-set">–</span>
+                                    <span class="qty center-set">0</span>
+                                    <span class="inc right-set">+</span>
+                                    <div class="subtotal-price" style="display: none">0</div>
+                                </div>
+                            </li> -->
+                            
+                        </ul>
+                        </div>
+                    </div>
+                    <div id="top" class="contents swiper-slide">
+                        <img src="img/tap_3.png" alt="top">
+                        <ul class="item-box row"></ul>
+                    </div>
+                    <div id="bottom" class="contents swiper-slide">
+                        <img src="img/tap_4.png" alt="bottom">
+                        <ul class="item-box row"></ul>
+                    </div>
+                    <div id="outer" class="contents swiper-slide">
+                        <img src="img/tap_5.png" alt="outer">
+                        <ul class="item-box row"></ul>
+                    </div>
+                    <div id="etc" class="contents swiper-slide">
+                        <img src="img/tap_6.png" alt="etc">
+                        <ul class="item-box row"></ul>
+                    </div>
+                    <div id="bedclothes" class="contents swiper-slide">
+                        <img src="img/tap_7.png" alt="bedclothes">
+                        <ul class="item-box row"></ul>
+                    </div>
+                    <div id="footwear" class="contents swiper-slide swiper-slide">
+                        <img src="img/tap_8.png" alt="footwear">
+                        <ul class="item-box row"></ul>
+                    </div>  
+                    <div id="bag" class="contents swiper-slide">
+                        <img src="img/tap_9.png" alt="bag">
+                        <ul class="item-box row"></ul>
+                    </div>  
+                    <div id="add" class="contents swiper-slide">
+                        <img src="img/tap_10.png" alt="add">
+                        <ul class="item-box row"></ul>
+                    </div>  
                 </div>
-                <div id="top" class="contents">
-                    <img src="img/tap_3.png" alt="top">
-                </div>
-                <div id="bottom" class="contents">
-                    <img src="img/tap_4.png" alt="bottom">
-                </div>
-                <div id="outer" class="contents">
-                    <img src="img/tap_5.png" alt="outer">
-                </div>
-                <div id="etc" class="contents">
-                    <img src="img/tap_6.png" alt="etc">
-                </div>
-                <div id="bedclothes" class="contents">
-                    <img src="img/tap_7.png" alt="bedclothes">
-                </div>
-                <div id="footwear" class="contents">
-                    <img src="img/tap_8.png" alt="footwear">
-                </div>  
-                <div id="bag" class="contents">
-                    <img src="img/tap_9.png" alt="bag">
-                </div>  
-                <div id="add" class="contents">
-                    <img src="img/tap_10.png" alt="add">
-                </div>  
             </div>
         </div>
 
@@ -199,5 +214,9 @@
         <script src="js/app.js"></script>
         <script src="js/storage.js"></script>
         <script src="js/view.js"></script>
+
+        <!-- Swiper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
+
 	</body>
 </html>

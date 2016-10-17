@@ -21,7 +21,7 @@ nav.nav-top .nav-wrapper .brand-logo {
   font-size: 2.6rem;
 }
 nav.nav-top .nav-wrapper .brand-logo img {
-  width: 150px;
+  width: 140px;
 }
 nav.nav-top .nav-wrapper .button-collapse {
   left: 20px;
@@ -63,31 +63,35 @@ nav.nav-top .nav-wrapper a {
   line-height: 3rem;
   text-align: center;
 }
-.contents-container .item {
+.contents-container .item-box li {
+  font-size: 16px;
+  margin: 20px 0;
+}
+.contents-container .item-box li .item {
   width: 68%;
 }
-.contents-container .item .col {
+.contents-container .item-box li .item .col {
   padding-left: 0;
 }
-.contents-container .qty-box {
+.contents-container .item-box li .qty-box {
   width: 30%;
   border: 1px solid #bcbcbc;
   border-radius: 3px;
   display: block;
   position: relative;
 }
-.contents-container .qty-box span {
+.contents-container .item-box li .qty-box span {
   float: left;
   line-height: 1.5;
   width: calc(33.33333333%);
 }
-.contents-container .qty-box .left-set {
+.contents-container .item-box li .qty-box .left-set {
   text-align: left;
 }
-.contents-container .qty-box .center-set {
+.contents-container .item-box li .qty-box .center-set {
   text-align: center;
 }
-.contents-container .qty-box .right-set {
+.contents-container .item-box li .qty-box .right-set {
   text-align: right;
 }
 .order-info {

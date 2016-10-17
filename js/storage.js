@@ -20,7 +20,6 @@ var storage = {
         qty: 0
       };
     }
-
     return cartItem;
   },
 
@@ -100,6 +99,10 @@ var storage = {
   /* this.meta의 'categories'를 리턴하는 함수 */
   getMetaCategories: function() {
     return this.meta.categories;
+  },
+
+  getMetaCategoryName: function(category) {
+    return this.meta.categories[category - 1].name;
   },
 
   /* this.meta의 'orderItems'를 가져온 후, 해당 'category'에 있는 품목들을 리턴하는 함수 */

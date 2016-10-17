@@ -2,6 +2,7 @@
 $( document ).ready(function(){
 	$('.button-collapse').sideNav(); // 반응형. 모바일 화면 상단바
 	$('ul.tabs').tabs(); // 품목 선택 탭 
+    //@TODO : tab눌린거 hover넣어야함! 
     $('.modal-trigger').leanModal(); // 모달 열기
 
     $('.close-btn').click(function(){ // 모달 닫기 

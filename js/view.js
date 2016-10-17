@@ -18,6 +18,7 @@ var view = {
     var _this = this;
     var wrapper = $('.main');
     var viewCategory = wrapper.find('.tab');
+    var categories = storage.getMetaCategories();
 
       // 카테고리 메뉴에서 클릭 시
       viewCategory.click(function() {
@@ -25,37 +26,47 @@ var view = {
         _this.drawItem(categoryId);
       });
 
-      // 카테고리 1 일 경우, 처리는 따로.. 
+      // 카테고리 1 일 경우, 처리는 따로..
     this.drawItem(this.currentCategory);
   },
 
   drawItem: function(category) {
+    // if (category == 1){
+
+    // } else {
+
+    // }
     var wrapper = $('.contents-container');
+    var categoryName = storage.getMetaCategoryName(category);
+    var viewItems = wrapper.find('#'+categoryName).find('.item-box');
     var items = storage.getMetaOrderItems(category);
-    var viewItems = wrapper.find('.view-items');
 
     viewItems.html('');
 
     for (var itemId in items) {
       var item = items[itemId];
-      // { name: '와이셔츠', price: 1000, category: 'category-1' }
-
       var userItemData = storage.getCartItem(itemId);
-      // { qty : 1}
 
-      var viewItem = $('<li>');
+      var viewItem = $("<li class= 'col s12'>");
       viewItem
-        .html(item.name + " qty: " + userItemData.qty)
+        .html("<div class='item col'><div class='col s12'><div class='left item-name'>" + item.name + "</div><div class='right'>₩" + item.price + "</div></div></div><div class='qty-box col' data-price='" + item.name + "'><span class='dec left-set'>–</span><span class='qty center-set'>" + userItemData.qty + "</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div>")
         .data('itemId', itemId);
 
-     // app
-      viewItem.click(function() {
-        var itemId = $(this).data('itemId');
+      var increaseQtyBtn = viewItem.find('.inc');
+      var decreaseQtyBtn = viewItem.find('.dec');
+
+      increaseQtyBtn.click(function() {
+        var itemId = $(this).parents('li').data('itemId');
         app.increaseCartItem(itemId, category);
       });
-      // app end
+
+      decreaseQtyBtn.click(function() {
+        var itemId = $(this).parents('li').data('itemId');
+        app.decreaseCartItem(itemId, category);
+      });
 
       viewItems.append(viewItem);
+      // app.swiperFunc();
     }
   },
 
