@@ -4,7 +4,7 @@ var view = {
 
   // init
   init: function() { // 실행이 안됨 , 로직은 됨
-    this.draw(); 
+    this.setCategory(); 
     this.update();
     this.initEvent();
   },
@@ -13,43 +13,24 @@ var view = {
     // $('')
   },
 
-  // draw html
-  draw: function() {
-    // debugger;
+  // view 가 아니므로 app.js로 뺄 예정 
+  setCategory: function() {
     var _this = this;
-    console.log(_this);
-
     var wrapper = $('.main');
-    var viewCategories = wrapper.find('.tab-menu');
-
-    var categories = storage.getMetaCategories();
-
-    for (var categoryId in categories) {
-      var category = categories[categoryId]; // { "name": "라운더리" }
-
-      var viewCategory = $('<li>');
-      viewCategory
-        .html(category.name)
-        .data('category', categoryId);
-        console.log(categoryId);
+    var viewCategory = wrapper.find('.tab');
 
       // 카테고리 메뉴에서 클릭 시
       viewCategory.click(function() {
-        var categoryId = parseInt($(this).data('category')) + 1;
-        
-        console.log(categoryId);
-
+        var categoryId = parseInt($(this).data('category'));
         _this.drawItem(categoryId);
       });
 
-      viewCategories.append(viewCategory);
-    }
-
+      // 카테고리 1 일 경우, 처리는 따로.. 
     this.drawItem(this.currentCategory);
   },
 
   drawItem: function(category) {
-    var wrapper = $('.main');
+    var wrapper = $('.contents-container');
     var items = storage.getMetaOrderItems(category);
     var viewItems = wrapper.find('.view-items');
 

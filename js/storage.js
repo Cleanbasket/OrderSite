@@ -87,6 +87,7 @@ var storage = {
           type: "GET",
           url: "http://localhost:8080/wash/item",
           dataType: "json",
+          async: false,
           success: function(resData) { 
             if (resData.constant == 1){ // 1 = Success 
               storage.meta = $.parseJSON(resData.data);
