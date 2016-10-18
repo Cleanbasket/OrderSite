@@ -9,13 +9,10 @@ $( document ).ready(function(){
         $('#modal-trace').closeModal();
     });
 
-    // 생활 물빨래 탭 item quantity box 정렬하기  
+    // 생활 물빨래 탭 item quantity box 정렬하기
     var laundryQtyTop = $('.nav-top').height() + $('.tab-menu').height();
-    laundryQtyTop = laundryQtyTop + ($('.laundry-img').height()/2.7);
-    var laundryQtyLeft = ($('.laundry-img').width() - $('.laundry-qty').width())/2;
-
+    laundryQtyTop += ($('.laundry-img').height()/2.7);
     $('#laundry .item-box-container').css('top',  laundryQtyTop + 'px');
-    $('.laundry-qty').css('left', laundryQtyLeft + 'px');
 
 
 

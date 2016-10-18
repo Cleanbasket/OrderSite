@@ -41,14 +41,32 @@ nav.nav-top .nav-wrapper a {
 .tab-menu .tabs .tab {
   height: 100%;
 }
+.tab-menu .tabs .tab a {
+  padding-top: 16px;
+}
 .tab-menu .tabs .tab a img {
+  display: block;
   width: 30px;
   height: 30px;
-  margin: 0 0 -25px 0px;
+  margin: 0 auto;
+}
+.tab-menu .tabs .tab a .tab-img {
+  display: block;
+}
+.tab-menu .tabs .tab a .tab-img-on {
+  display: none;
 }
 .tab-menu .tabs .tab a div {
   color: #666666;
-  font-size: 14px;
+}
+.tab-menu .tabs .tab .active .tab-img {
+  display: none;
+}
+.tab-menu .tabs .tab .active .tab-img-on {
+  display: block;
+}
+.tab-menu .tabs .tab .active div {
+  color: #5ddbdb;
 }
 .tab-menu .tabs .indicator {
   background-color: #5ddbdb;
@@ -60,8 +78,16 @@ nav.nav-top .nav-wrapper a {
 .contents-container #laundry .item-box-container {
   position: absolute;
   width: 100%;
-  line-height: 3rem;
   text-align: center;
+}
+.contents-container #laundry .item-box-container .qty-box {
+  width: 100px;
+  left: 50%;
+  margin-left: -50px;
+  position: absolute;
+}
+.contents-container #laundry .item-box-container .item-price {
+  line-height: 1.8;
 }
 .contents-container li.item-box {
   font-size: 16px;

@@ -53,14 +53,35 @@ nav.nav-top {
 			height: 100%;
 
 			a {
+				padding-top: 16px;
+
 				img {
+					display: block;
 					width: 30px;
 					height: 30px;
-					margin: 0 0 -25px 0px;
+					margin: 0 auto;
+				}
+				.tab-img {
+					display: block;
+				}
+				.tab-img-on {
+					display: none;
 				}
 				div {
 					color: @font-primary;
-					font-size: 14px;
+					// font-size: 14px;
+				}
+			}
+
+			.active {
+				.tab-img {
+					display: none;
+				}
+				.tab-img-on {
+					display: block;
+				}
+				div {
+					color: @primary;
 				}
 			}
 		}
@@ -78,12 +99,22 @@ nav.nav-top {
 		height: auto;
 	}
 
-	#laundry .item-box-container {
-		// border: 1px solid red;
-		position: absolute;
-		width: 100%;
-		line-height: 3rem;
-		text-align: center;					
+	#laundry {
+		.item-box-container {
+			position: absolute;
+			width: 100%;
+			text-align: center;	
+
+			.qty-box {
+				width:100px;
+				 left:50%;
+				 margin-left:-50px;
+				 position:absolute;
+			}	
+			.item-price {
+				line-height: 1.8;
+			}			
+		}
 	}
 	
 	li.item-box {

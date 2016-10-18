@@ -23,17 +23,18 @@ var app = {
 		storage.decreaseCartItem(itemId);
 		view.drawItem(category);
 		// view.update();
-	},
-
-	swiperFunc: function(){
-	    // $('ul.tabs').tabs('select_tab', 'bottom');
-	    var swiper = new Swiper('.swiper-container', {
-	        slidesPerView: 1,
-	        paginationClickable: true,
-	        spaceBetween: 30,
-	        loop: true
-	    });
 	}
+
+	// // swipe paging
+	// swiperFunc: function(){
+	//     // $('ul.tabs').tabs('select_tab', 'bottom');
+	//     var swiper = new Swiper('.swiper-container', {
+	//         slidesPerView: 1,
+	//         paginationClickable: true,
+	//         spaceBetween: 30,
+	//         loop: true
+	//     });
+	// }
 
 	
 };
