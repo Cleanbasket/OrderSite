@@ -78,7 +78,7 @@ nav.nav-top {
 		height: auto;
 	}
 
-	#laundry .laundry-qty-container {
+	#laundry .item-box-container {
 		// border: 1px solid red;
 		position: absolute;
 		width: 100%;
@@ -86,7 +86,7 @@ nav.nav-top {
 		text-align: center;					
 	}
 	
-	.item-box li {
+	li.item-box {
 		font-size: 16px;
 		margin: 20px 0;
 
@@ -97,34 +97,35 @@ nav.nav-top {
 				padding-left: 0;
 			}
 		}
-		
-		//*-- item quantity changer --*//
-		.qty-box {
-			width: 30%;
-			border: 1px solid #bcbcbc;
-			border-radius: 3px;
-			display: block;
-			// float: right;
-			position: relative;
-			// right: -20px !important;
-
-			span {
-			  float: left;
-			  line-height: 1.5;
-			  width: calc(100%/3);
-			}
-			.left-set {
-				text-align: left;
-			}
-			.center-set {
-				text-align: center;
-			}
-			.right-set {
-				text-align: right;
-			}
-		}
-		
 	}
+		
+	//*-- item quantity changer --*//
+	.qty-box {
+		width: 30%;
+		border: 1px solid #bcbcbc;
+		border-radius: 3px;
+		display: block;
+		// float: right;
+		position: relative;
+		// right: -20px !important;
+
+		span {
+		  float: left;
+		  line-height: 1.5;
+		  width: calc(100%/3);
+		}
+		.left-set {
+			text-align: left;
+		}
+		.center-set {
+			text-align: center;
+		}
+		.right-set {
+			text-align: right;
+		}
+	}
+		
+	
 }
 
 

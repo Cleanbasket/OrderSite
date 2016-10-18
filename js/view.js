@@ -31,43 +31,53 @@ var view = {
   },
 
   drawItem: function(category) {
-    // if (category == 1){
-
-    // } else {
-
-    // }
     var wrapper = $('.contents-container');
     var categoryName = storage.getMetaCategoryName(category);
-    var viewItems = wrapper.find('#'+categoryName).find('.item-box');
+    var viewItems = wrapper.find('#'+categoryName).find('.item-box-container');
     var items = storage.getMetaOrderItems(category);
 
     viewItems.html('');
 
-    for (var itemId in items) {
-      var item = items[itemId];
-      var userItemData = storage.getCartItem(itemId);
+    if(category === 1){
+      for (var itemId in items) {
+        var item = items[itemId];
+        var userItemData = storage.getCartItem(itemId);
 
-      var viewItem = $("<li class= 'col s12'>");
-      viewItem
-        .html("<div class='item col'><div class='col s12'><div class='left item-name'>" + item.name + "</div><div class='right'>₩" + item.price + "</div></div></div><div class='qty-box col' data-price='" + item.name + "'><span class='dec left-set'>–</span><span class='qty center-set'>" + userItemData.qty + "</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div>")
-        .data('itemId', itemId);
+        var viewItem = $("<div class='item-box'>");
+        viewItem
+          .html("<div class='laundry-qty qty-box col s3' data-price='" + item.price + "'><span class='dec left-set'>–</span><span class='qty center-set'>" + userItemData.qty + "</span><span class='inc right-set'>+</span><div class='item-name' style='display: none'>" + item.name + "</div><div class='subtotal-price' style='display: none'>0</div></div><div class='col s12'>₩" + item.price + "/수거가방</div>")
+          .data('itemId', itemId);
 
-      var increaseQtyBtn = viewItem.find('.inc');
-      var decreaseQtyBtn = viewItem.find('.dec');
+        viewItems.append(viewItem);
+        // app.swiperFunc();
+      }
+    } else {
+      for (var itemId in items) {
+        var item = items[itemId];
+        var userItemData = storage.getCartItem(itemId);
 
-      increaseQtyBtn.click(function() {
-        var itemId = $(this).parents('li').data('itemId');
-        app.increaseCartItem(itemId, category);
-      });
+        var viewItem = $("<li class='item-box col s12'>");
+        viewItem
+          .html("<div class='item col'><div class='col s12'><div class='left item-name'>" + item.name + "</div><div class='right'>₩" + item.price + "</div></div></div><div class='qty-box col' data-price='" + item.price + "'><span class='dec left-set'>–</span><span class='qty center-set'>" + userItemData.qty + "</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div>")
+          .data('itemId', itemId);
 
-      decreaseQtyBtn.click(function() {
-        var itemId = $(this).parents('li').data('itemId');
-        app.decreaseCartItem(itemId, category);
-      });
-
-      viewItems.append(viewItem);
-      // app.swiperFunc();
+        viewItems.append(viewItem);
+        // app.swiperFunc();
+      }
     }
+
+    // viewItem.find('.inc').click(function() {
+    $('.inc').click(function() {
+      var itemId = $(this).parents('.item-box').data('itemId');
+      app.increaseCartItem(itemId, category);
+    });
+
+    // viewItem.find('.dec').click(function() {
+    $('.dec').click(function() {
+      var itemId = $(this).parents('.item-box').data('itemId');
+      app.decreaseCartItem(itemId, category);
+    });
+
   },
 
   // update fields

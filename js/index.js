@@ -14,7 +14,7 @@ $( document ).ready(function(){
     laundryQtyTop = laundryQtyTop + ($('.laundry-img').height()/2.7);
     var laundryQtyLeft = ($('.laundry-img').width() - $('.laundry-qty').width())/2;
 
-    $('.laundry-qty-container').css('top',  laundryQtyTop + 'px');
+    $('#laundry .item-box-container').css('top',  laundryQtyTop + 'px');
     $('.laundry-qty').css('left', laundryQtyLeft + 'px');
 
 
