@@ -3,15 +3,24 @@ var view = {
   currentCategory: 1,
 
   // init
-  init: function() { // 실행이 안됨 , 로직은 됨
+  init: function() {
+    this.drawLaundryQty();
     this.setCategory(); 
-    this.update();
+    this.drawCartInfo();
     this.initEvent();
   },
 
   initEvent: function() {
-    // $('')
+    $('ul.tabs').tabs(); // 품목 선택 탭 
   },
+
+  drawLaundryQty: function(){
+    // 생활 물빨래 탭 item quantity box 정렬하기
+    var laundryQtyTop = $('.nav-top').height() + $('.tab-menu').height();
+    laundryQtyTop += ($('.laundry-img').height()/2.7);
+    $('#laundry .item-box-container').css('top',  laundryQtyTop + 'px');
+  },
+
 
   // view 가 아니므로 app.js로 뺄 예정 
   setCategory: function() {
@@ -23,7 +32,9 @@ var view = {
       // 카테고리 메뉴에서 클릭 시
       viewCategory.click(function() {
         var categoryId = parseInt($(this).data('category'));
-        _this.drawSelectedCategory(categoryId);
+        // _this.drawItem(categoryId);
+        app.changeCategory(categoryId);
+        _this.drawItem(_this.currentCategory);
       });
 
       // 디폴트는 카테고리1 
@@ -42,11 +53,11 @@ var view = {
     if(category === 1){
       for (var itemId in items) {
         var item = items[itemId];
-        var userItemData = storage.getCartItem(itemId);
+        var userItemQty = storage.getCartItemQty(itemId);
 
         var viewItem = $("<div class='item-box'>");
         viewItem
-          .html("<div class='laundry-qty qty-box col s3' data-price='" + item.price + "'><span class='dec left-set'>–</span><span class='qty center-set'>" + userItemData.qty + "</span><span class='inc right-set'>+</span><div class='item-name' style='display: none'>" + item.name + "</div><div class='subtotal-price' style='display: none'>0</div></div><div class='item-price col s12'><br>₩" + item.price + "/수거가방</div>")
+          .html("<div class='laundry-qty qty-box col s3'><span class='dec left-set'>–</span><span class='qty center-set'>" + userItemQty + "</span><span class='inc right-set'>+</span></div><div class='item-price col s12'><br>₩" + item.price + "/수거가방</div>")
           .data('itemId', itemId);
 
         viewItems.append(viewItem);
@@ -54,11 +65,11 @@ var view = {
     } else {
       for (var itemId in items) {
         var item = items[itemId];
-        var userItemData = storage.getCartItem(itemId);
+        var userItemQty = storage.getCartItemQty(itemId);
 
         var viewItem = $("<li class='item-box col s12'>");
         viewItem
-          .html("<div class='item col'><div class='col s12'><div class='left item-name'>" + item.name + "</div><div class='right'>₩" + item.price + "</div></div></div><div class='qty-box col' data-price='" + item.price + "'><span class='dec left-set'>–</span><span class='qty center-set'>" + userItemData.qty + "</span><span class='inc right-set'>+</span><div class='subtotal-price' style='display: none'>0</div></div>")
+          .html("<div class='item col'><div class='col s12'><div class='left'>" + item.name + "</div><div class='right'>₩" + item.price + "</div></div></div><div class='qty-box col'><span class='dec left-set'>–</span><span class='qty center-set'>" + userItemQty + "</span><span class='inc right-set'>+</span></div>")
           .data('itemId', itemId);
 
         viewItems.append(viewItem);
@@ -79,8 +90,12 @@ var view = {
 
   },
 
-  // update fields
-  update: function() {
+  // update cart-info
+  drawCartInfo: function() {
+    var wrapper = $('.cart-info');
+    var userCart = storage.getDatas();
 
+    wrapper.find('.total-number').html(userCart.totalItemQty + "개");
+    wrapper.find('.total-price').html(userCart.totalItemPrice + "원");
   }
 };

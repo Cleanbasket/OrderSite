@@ -4,32 +4,13 @@ var storage = {
     this.load();
   },
 
-  /* this.datas.cart를 리턴하는 함수 */
-  getAllCartItem: function() {
-    return this.datas.cart;
-  },
-
-  /* get cart item */
-  getCartItem: function(itemId) {
-    var cartItem;
-
-    if (this.datas.cart[itemId] !== undefined) {
-      cartItem = this.datas.cart[itemId];
-    } else {
-      cartItem = {
-        qty: 0
-      };
-    }
-    return cartItem;
-  },
-
-  /* set qty, and save */
-  setCartItem: function(itemId, qty) {
-    if (this.datas.cart[itemId] !== undefined) {
-      this.datas.cart[itemId].qty = qty;
-    } else {
+  /* set name and price, and save datas */
+  setCartItem: function(itemId) {
+    if (this.datas.cart[itemId] === undefined){
       this.datas.cart[itemId] = {
-        qty: qty
+        name: this.meta.orderItems[itemId].name,
+        price: this.meta.orderItems[itemId].price,
+        qty: 0
       };
     }
 
@@ -38,13 +19,7 @@ var storage = {
 
   /* increase qty */
   increaseCartItem: function(itemId) {
-    if (this.datas.cart[itemId] !== undefined) {
-      this.datas.cart[itemId].qty++;
-    } else {
-      this.datas.cart[itemId] = {
-        qty: 1
-      };
-    }
+    this.datas.cart[itemId].qty++;
 
     this.save();
   },
@@ -60,13 +35,31 @@ var storage = {
     this.save();
   },
 
+  updateTotals: function(){
+    this.datas.totalItemQty = 0;
+    this.datas.totalItemPrice = 0;
+
+    for (var itemId in this.datas.cart) {
+      var item = this.datas.cart[itemId];
+      if (item.qty !== 0) {
+        var subTotalPrice = item.qty * item.price;
+        this.datas.totalItemQty += item.qty;
+        this.datas.totalItemPrice += subTotalPrice;
+      }
+    }
+
+    this.save();
+  },
+
   /* sessionStorage의 'cart-db' 데이터를 가져와(getItem) this.datas에 적용하는 함수 */
   load: function() {
     var savedData = JSON.parse(sessionStorage.getItem('cart-db'));
 
     if (savedData === null) {
       this.datas = {
-        cart: { }
+        cart: { },
+        totalItemQty: 0,
+        totalItemPrice: 0
       };
     } else {
       this.datas = savedData;
@@ -118,6 +111,26 @@ var storage = {
     }
 
     return result_items;
+  },
+  // /* this.datas.cart를 리턴하는 함수 */
+  // getAllCartItem: function() {
+  //   return this.datas.cart;
+  // },
+
+  getDatas: function(){
+    return this.datas;
+  },
+
+  /* get cart item qty */
+  getCartItemQty: function(itemId) {
+    var itemQty;
+
+    if (this.datas.cart[itemId] !== undefined) {
+      itemQty = this.datas.cart[itemId].qty;
+    } else {
+      itemQty = 0;
+    }
+    return itemQty;
   },
 
   /* meta datas */

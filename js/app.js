@@ -9,20 +9,24 @@ var app = {
 	},
 
 	changeCategory: function(categoryId) {
-		view.currentCategoryId = categoryId;
-		view.drawItem(categoryId);
+		view.currentCategory = categoryId;
+		// view.drawItem(categoryId);
 	},
 
 	increaseCartItem: function(itemId, category) {
+		storage.setCartItem(itemId);
 		storage.increaseCartItem(itemId);
+		storage.updateTotals();
 		view.drawItem(category);
-		// view.update();
+		view.drawCartInfo();
 	},
 
 	decreaseCartItem: function(itemId, category) {
+		storage.setCartItem(itemId);
 		storage.decreaseCartItem(itemId);
+		storage.updateTotals();
 		view.drawItem(category);
-		// view.update();
+		view.drawCartInfo();
 	}
 
 	// // swipe paging

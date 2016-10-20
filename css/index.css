@@ -120,7 +120,7 @@ nav.nav-top .nav-wrapper a {
 .contents-container .qty-box .right-set {
   text-align: right;
 }
-.order-info {
+.cart-info {
   margin-bottom: 0;
   padding: 15px;
   position: fixed;
@@ -131,13 +131,13 @@ nav.nav-top .nav-wrapper a {
   z-index: 100;
   border-top: 1px solid black;
 }
-.order-info .cart {
+.cart-info .cart {
   width: 68%;
 }
-.order-info .cart .col {
+.cart-info .cart .col {
   padding-left: 0 !important;
 }
-.order-info .cart-btn {
+.cart-info .cart-btn {
   width: 32%;
   height: 42px !important;
   box-shadow: none !important;
