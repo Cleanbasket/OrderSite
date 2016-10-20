@@ -11,7 +11,20 @@ var view = {
   },
 
   initEvent: function() {
+    var _this = this;
     $('ul.tabs').tabs(); // 품목 선택 탭 
+
+    $(document).on('click','.cart-btn',this.checkTotalPrice);
+  },
+
+  checkTotalPrice: function(){
+    var userCart = storage.getDatas();
+
+    if (userCart.totalItemPrice < 10000){
+      alert("최소 주문 금액은 10,000원 입니다!");
+    } else {
+      window.location.href = 'write.html';
+    }
   },
 
   drawLaundryQty: function(){
