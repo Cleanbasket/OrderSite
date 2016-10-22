@@ -95,7 +95,7 @@
                     <input type="time" name="time">
                     <!-- <select name="pickup_time" id="pickuptime" class="pg-text-fieldR order-pickup input-group-addon" required> -->
                 </div>
-                <div class="select-wrapper row">
+                <div class="select-wrapper">
                     <div class="text">배달</div>
                     <input type="date" name="date">
                     <input type="time" name="time">
@@ -107,28 +107,21 @@
                 <h5 class="headline-info">주문 정보 입력</h5>
                 <form>
                     <div class="input-wrapper">
-                        <div class="input-field col s5">
-                          <input id="name" type="text" class="validate">
-                          <label for="name">성함</label>
+                        <div class="col s5">
+                          <input id="name" type="text" placeholder="성함">
                         </div>
-                        <div class="input-field col s7">
-                          <input id="phone" type="number" class="validate">
-                          <label for="phone">휴대폰 번호</label>
+                        <div class="col s7">
+                          <input id="phone" type="number" placeholder="휴대폰 번호">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                          <input id="address" type="text" class="validate">
-                          <label for="address">주소 입력</label>
+                        <div class="col s12">
+                          <input id="address" type="text" placeholder="주소 입력">
+                        </div>
+                        <div class="col s12">
+                          <input id="address2" type="text" placeholder="상세주소 입력">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                          <input id="address2" type="text" class="validate">
-                          <label for="address2">상세주소 입력</label>
-                        </div>
-                    </div>
-                    <button class="btn waves-effect waves-light col s12" type="submit">변경/추가</button>        
+                    
+                    <button class="order-btn btn-border waves-effect waves-light col s12" type="submit">주문접수</button>        
                 </form>
             </div>
         </div>

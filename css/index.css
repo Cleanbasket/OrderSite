@@ -34,12 +34,14 @@ nav.nav-top .nav-wrapper a {
 }
 .tab-menu {
   box-shadow: 0 6px 5px 0 rgba(0, 0, 0, 0.02), 0 2px 10px 0 rgba(0, 0, 0, 0.05) !important;
+  height: 107px;
 }
 .tab-menu .tabs {
   height: 100%;
 }
 .tab-menu .tabs .tab {
   height: 100%;
+  min-width: 85px;
 }
 .tab-menu .tabs .tab a {
   padding-top: 16px;
@@ -48,7 +50,7 @@ nav.nav-top .nav-wrapper a {
   display: block;
   width: 30px;
   height: 30px;
-  margin: 0 auto;
+  margin: 10px auto -5px auto;
 }
 .tab-menu .tabs .tab a .tab-img {
   display: block;
@@ -86,15 +88,20 @@ nav.nav-top .nav-wrapper a {
   margin-left: -50px;
   position: absolute;
 }
+.contents-container #laundry .item-box-container .qty-box span {
+  line-height: 1.7;
+}
 .contents-container #laundry .item-box-container .item-price {
-  line-height: 1.8;
+  line-height: 2.2;
+  color: #666666;
 }
 .contents-container li.item-box {
   font-size: 16px;
-  margin: 20px 0;
+  margin: 17px 0;
 }
 .contents-container li.item-box .item {
   width: 68%;
+  line-height: 1.7;
 }
 .contents-container li.item-box .item .col {
   padding-left: 0;
@@ -108,7 +115,7 @@ nav.nav-top .nav-wrapper a {
 }
 .contents-container .qty-box span {
   float: left;
-  line-height: 1.5;
+  line-height: 1.7;
   width: calc(33.33333333%);
 }
 .contents-container .qty-box .left-set {
@@ -136,6 +143,10 @@ nav.nav-top .nav-wrapper a {
 }
 .cart-info .cart .col {
   padding-left: 0 !important;
+}
+.cart-info .cart .col .total-number,
+.cart-info .cart .col .total-price {
+  font-weight: bold;
 }
 .cart-info .cart-btn {
   width: 32%;
