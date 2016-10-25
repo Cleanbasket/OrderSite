@@ -88,36 +88,37 @@
             </div>
             
             <div class="section col s12">
+              <form name="date_time_info">
                 <h5 class="headline-info">수거 및 배달 시간 선택</h5>
                 <div class="select-wrapper">
                     <div class="text">수거</div>
-                    <input type="date" name="date">
-                    <input type="time" name="time">
-                    <!-- <select name="pickup_time" id="pickuptime" class="pg-text-fieldR order-pickup input-group-addon" required> -->
+                    <input type="date" name="pickup_date">
+                    <input type="time" name="pickup_time">
                 </div>
                 <div class="select-wrapper">
                     <div class="text">배달</div>
-                    <input type="date" name="date">
-                    <input type="time" name="time">
+                    <input type="date" name="dropoff_date">
+                    <input type="time" name="dropoff_time">
                 </div>
+              </form>
             </div>
 
 
             <div class="section col s12">
                 <h5 class="headline-info">주문 정보 입력</h5>
-                <form>
+                <form name="order_info" >
                     <div class="input-wrapper">
                         <div class="col s5">
-                          <input id="name" type="text" placeholder="성함">
+                          <input id="name" type="text" name="name" placeholder="성함">
                         </div>
                         <div class="col s7">
-                          <input id="phone" type="number" placeholder="휴대폰 번호">
+                          <input id="phone" type="number"  name="phone" placeholder="휴대폰 번호">
                         </div>
                         <div class="col s12">
-                          <input id="address" type="text" placeholder="주소 입력">
+                          <input id="address" type="text" name="address" placeholder="주소 입력">
                         </div>
                         <div class="col s12">
-                          <input id="address2" type="text" placeholder="상세주소 입력">
+                          <input id="address2" type="text" name="addr_building" placeholder="상세주소 입력">
                         </div>
                     </div>
                     

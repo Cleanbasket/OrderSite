@@ -8,10 +8,10 @@ $( document ).ready(function(){
         $('#modal-trace').closeModal();
     });
 
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
-      });
+    // $('.datepicker').pickadate({
+    //     selectMonths: true, // Creates a dropdown to control month
+    //     selectYears: 15 // Creates a dropdown of 15 years to control year
+    //   });
           
     // // 생활 물빨래 탭 item quantity box 정렬하기
     // var laundryQtyTop = $('.nav-top').height() + $('.tab-menu').height();
