@@ -1,7 +1,8 @@
 $( document ).ready(function(){
 
     // 수거 및 배달 날짜 세팅 
-    setDatePicker();
+    setToday();
+    $(document).on("change","#pickup_date",changePickupDate);
 
     // 주문 내역 보여주기 
     showCartInfo();
@@ -20,18 +21,40 @@ Date.prototype.toDateInputValue = (function() {
     return local.toJSON().slice(0,10);
 });
 
-function setDatePicker(){
+function setToday(){
+    var today = new Date();
+    setDatePicker(today);
+}
+
+function changePickupDate(){
+    var changeVal = $('#pickup_date').val();
+    var changeDate = new Date(changeVal);
+    setDatePicker(changeDate);
+}
+
+function setDatePicker(pickup_date){
     var pickup_minDate = new Date(),
         pickup_maxDate = new Date(),
         dropoff_minDate = new Date(),
         dropoff_maxDate = new Date();
 
-    pickup_maxDate.setDate(pickup_minDate.getDate() + 8);
-    dropoff_minDate.setDate(pickup_minDate.getDate() + 2);
-    dropoff_maxDate.setDate(dropoff_minDate.getDate() + 8);
+        pickup_maxDate.setDate(pickup_minDate.getDate() + 8); // 최대 수거 날짜 
+        dropoff_minDate.setDate(pickup_date.getDate() + 2); // 최소 배달 날짜
 
+    var friday = 5,
+        saturday = 6,
+        sunday = 0;
+
+    // 최소 수거 날짜가 '금,토,일'일 경우 
+    if(pickup_date.getDay() == friday || pickup_date.getDay() == saturday || pickup_date.getDay() == sunday){
+        dropoff_minDate.setDate(pickup_date.getDate() + 3); // 최소 배달 날짜 
+    }
+
+    dropoff_maxDate.setDate(dropoff_minDate.getDate() + 8); // 최대 배달 날짜 
+
+    // 화면에 출력 
     $('#pickup_date')
-        .val(pickup_minDate.toDateInputValue())
+        .val(pickup_date.toDateInputValue())
         .attr({
             'min': pickup_minDate.toDateInputValue(),
             'max': pickup_maxDate.toDateInputValue()
@@ -44,6 +67,16 @@ function setDatePicker(){
             'max': dropoff_maxDate.toDateInputValue()
         });
 }
+
+$('#pickuptime').on("change", function(e){
+        var duration = 2;
+        var d = document.getElementById("datetimepicker");
+        var dow = d.value;
+        if (dow.indexOf("금") > 0 || dow.indexOf("토") > 0 || dow.indexOf("일") > 0)
+            duration = 3;
+        if (dropoffDate.datepicker("getDate").getDate() == (pickupDate.datepicker("getDate").getDate() + duration) % numOfDays)
+            setDatetimeLimitD();
+    })
 
 function showCartInfo() {
     var cartHtml = "",
