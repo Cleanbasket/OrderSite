@@ -68,7 +68,8 @@ html {
   padding: 0;
   display: inline;
 }
-.section .select-wrapper input {
+.section .select-wrapper input,
+.section .select-wrapper select {
   width: 40%;
   border: 1px solid #bbb;
   display: inline;

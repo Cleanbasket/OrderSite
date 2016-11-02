@@ -3,6 +3,8 @@ $( document ).ready(function(){
     // 수거 및 배달 날짜 세팅 
     setToday();
     $(document).on("change","#pickup_date",changePickupDate);
+    $(document).on("change","#pickup_time",setDropoffTime);
+    $(document).on("change","#dropoff_date",setDropoffTime);
 
     // 주문 내역 보여주기 
     showCartInfo();
@@ -62,21 +64,102 @@ function setDatePicker(pickup_date){
 
     $('#dropoff_date')
         .val(dropoff_minDate.toDateInputValue())
+        .data('minDate', dropoff_minDate)
         .attr({
             'min': dropoff_minDate.toDateInputValue(),
             'max': dropoff_maxDate.toDateInputValue()
         });
+
+    setPickupTime(pickup_date);
+    setDropoffTime();
 }
 
-$('#pickuptime').on("change", function(e){
-        var duration = 2;
-        var d = document.getElementById("datetimepicker");
-        var dow = d.value;
-        if (dow.indexOf("금") > 0 || dow.indexOf("토") > 0 || dow.indexOf("일") > 0)
-            duration = 3;
-        if (dropoffDate.datepicker("getDate").getDate() == (pickupDate.datepicker("getDate").getDate() + duration) % numOfDays)
-            setDatetimeLimitD();
-    })
+var hoursTextData = {
+    1 : "10:00 ~ 11:00",
+    2 : "10:30 ~ 11:30",
+    3 : "11:00 ~ 12:00",
+    4 : "11:30 ~ 12:30",
+    5 : "12:00 ~ 13:00",
+    6 : "12:30 ~ 13:30",
+    7 : "13:00 ~ 14:00",
+    8 : "13:30 ~ 14:30",
+    9 : "14:00 ~ 15:00",
+    10 : "14:30 ~ 15:30",
+    11 : "15:00 ~ 16:00",
+    12 : "15:30 ~ 16:30",
+    13 : "16:00 ~ 17:00",
+    14 : "16:30 ~ 17:30",
+    15 : "17:00 ~ 18:00",
+    16 : "17:30 ~ 18:30",
+    17 : "18:00 ~ 19:00",
+    18 : "18:30 ~ 19:30",
+    19 : "19:00 ~ 20:00",
+    20 : "19:30 ~ 20:30",
+    21 : "20:00 ~ 21:00",
+    22 : "20:30 ~ 21:30",
+    23 : "21:00 ~ 22:00",
+    24 : "21:30 ~ 22:30",
+    25 : "22:00 ~ 23:00",
+    26 : "22:30 ~ 23:30",
+    27 : "23:00 ~ 24:00"
+};
+
+function setPickupTime(pickup_date) {
+    var date = new Date(),
+        day = date.getDate(),
+        hours = date.getHours(),
+        minutes = date.getMinutes(),
+        startPoint = 1;
+
+    if (day == pickup_date.getDate()) { // 선택된 수거 날짜가 오늘일 경우 
+        if (hours >= 8) {
+            startPoint = 2 * hours - 14;
+            if (minutes >= 30)
+                startPoint++;
+        }
+    }
+
+    var select = $("#pickup_time");
+
+    select.find("option").remove();
+    
+    if (startPoint <= 27) {
+        for (var i = startPoint; i <= 27; i++) 
+            select.append("<option value='" + i + "'>" + hoursTextData[i] + "</option>");
+    }
+    else {
+        select.append("<option disabled>날짜를 새로 선택해주세요.</option>");
+    }
+}
+
+function setDropoffTime() {
+    console.log("함수드러와따 ");
+    var dropoff_minDate = $('#dropoff_date').data('minDate'),
+        dropoff_date = $('#dropoff_date').val();
+
+    var select = $("#dropoff_time");
+    select.find("option").remove();
+    
+    if (dropoff_minDate.toDateInputValue() == dropoff_date){
+        console.log("if");
+
+        if ($('#pickup_time').find('option').attr('disabled') == "disabled") {
+                console.log("else if");
+                select.append("<option disabled>날짜를 새로 선택해주세요.</option>");
+                return;
+            }
+        var t = $("#pickup_time");
+        var time = t.val();
+        for (var i = time; i <= 27; i++) {
+            select.append("<option value='" + i + "'>" + hoursTextData[i] + "</option>");
+        }
+    } else {
+        console.log("else");
+        for (var i = 1; i <= 27; i++)
+            select.append("<option value='" + i + "'>" + hoursTextData[i] + "</option>");
+    }
+
+}
 
 function showCartInfo() {
     var cartHtml = "",
