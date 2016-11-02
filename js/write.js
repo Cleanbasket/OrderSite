@@ -76,32 +76,19 @@ function setDatePicker(pickup_date){
 
 var hoursTextData = {
     1 : "10:00 ~ 11:00",
-    2 : "10:30 ~ 11:30",
-    3 : "11:00 ~ 12:00",
-    4 : "11:30 ~ 12:30",
-    5 : "12:00 ~ 13:00",
-    6 : "12:30 ~ 13:30",
-    7 : "13:00 ~ 14:00",
-    8 : "13:30 ~ 14:30",
-    9 : "14:00 ~ 15:00",
-    10 : "14:30 ~ 15:30",
-    11 : "15:00 ~ 16:00",
-    12 : "15:30 ~ 16:30",
-    13 : "16:00 ~ 17:00",
-    14 : "16:30 ~ 17:30",
-    15 : "17:00 ~ 18:00",
-    16 : "17:30 ~ 18:30",
-    17 : "18:00 ~ 19:00",
-    18 : "18:30 ~ 19:30",
-    19 : "19:00 ~ 20:00",
-    20 : "19:30 ~ 20:30",
-    21 : "20:00 ~ 21:00",
-    22 : "20:30 ~ 21:30",
-    23 : "21:00 ~ 22:00",
-    24 : "21:30 ~ 22:30",
-    25 : "22:00 ~ 23:00",
-    26 : "22:30 ~ 23:30",
-    27 : "23:00 ~ 24:00"
+    2 : "11:00 ~ 12:00",
+    3 : "12:00 ~ 13:00",
+    4 : "13:00 ~ 14:00",
+    5 : "14:00 ~ 15:00",
+    6 : "15:00 ~ 16:00",
+    7 : "16:00 ~ 17:00",
+    8 : "17:00 ~ 18:00",
+    9 : "18:00 ~ 19:00",
+    10 : "19:00 ~ 20:00",
+    11 : "20:00 ~ 21:00",
+    12 : "21:00 ~ 22:00",
+    13 : "22:00 ~ 23:00",
+    14 : "23:00 ~ 24:00"
 };
 
 function setPickupTime(pickup_date) {
@@ -113,8 +100,8 @@ function setPickupTime(pickup_date) {
 
     if (day == pickup_date.getDate()) { // 선택된 수거 날짜가 오늘일 경우 
         if (hours >= 8) {
-            startPoint = 2 * hours - 14;
-            if (minutes >= 30)
+            startPoint = hours - 7;
+            if (minutes >= 1)
                 startPoint++;
         }
     }
@@ -123,17 +110,16 @@ function setPickupTime(pickup_date) {
 
     select.find("option").remove();
     
-    if (startPoint <= 27) {
-        for (var i = startPoint; i <= 27; i++) 
+    if (startPoint <= 14) {
+        for (var i = startPoint; i <= 14; i++) 
             select.append("<option value='" + i + "'>" + hoursTextData[i] + "</option>");
     }
-    else {
+    else { // 당일 수거가 불가능한 경우
         select.append("<option disabled>날짜를 새로 선택해주세요.</option>");
     }
 }
 
 function setDropoffTime() {
-    console.log("함수드러와따 ");
     var dropoff_minDate = $('#dropoff_date').data('minDate'),
         dropoff_date = $('#dropoff_date').val();
 
@@ -141,21 +127,19 @@ function setDropoffTime() {
     select.find("option").remove();
     
     if (dropoff_minDate.toDateInputValue() == dropoff_date){
-        console.log("if");
-
+        // 당일 수거가 불가능한 경우
         if ($('#pickup_time').find('option').attr('disabled') == "disabled") {
-                console.log("else if");
-                select.append("<option disabled>날짜를 새로 선택해주세요.</option>");
-                return;
-            }
+            select.append("<option disabled>날짜를 새로 선택해주세요.</option>");
+            return;
+        }
+
         var t = $("#pickup_time");
         var time = t.val();
-        for (var i = time; i <= 27; i++) {
+        for (var i = time; i <= 14; i++) {
             select.append("<option value='" + i + "'>" + hoursTextData[i] + "</option>");
         }
     } else {
-        console.log("else");
-        for (var i = 1; i <= 27; i++)
+        for (var i = 1; i <= 14; i++)
             select.append("<option value='" + i + "'>" + hoursTextData[i] + "</option>");
     }
 
@@ -174,6 +158,7 @@ function showCartInfo() {
         var subTotalPrice = cartItemList[i].qty * cartItemList[i].price;
         cartHtml += "<tr><td>" + cartItemList[i].name + "</td><td>" + cartItemList[i].qty + "</td><td>₩" + subTotalPrice + "</td></tr>";
     }
+    cartHtml += "<tr><td>+ 배달비용</td><td></td><td>₩" + cartData.dropoff_price + "</td></tr>";
     cartHtml += "<tr><td>합계</td><td>" + cartData.totalItemQty + "</td><td>₩" + cartData.totalItemPrice + "</td></tr>";
     $('#show-cart').append(cartHtml);
 }
@@ -196,18 +181,32 @@ function orderBtn(e){
         return [value];
     });
 
-    obj.pickup_date = date_time_form.pickup_date.value + " " + date_time_form.pickup_time.value;
-    obj.dropoff_date = date_time_form.dropoff_date.value + " " + date_time_form.dropoff_time.value;
-    
-    obj.name = order_form.name.value; // form의 값을 오브젝트에 저장
-    obj.phone = order_form.phone.value; // form의 값을 오브젝트에 저장
-    obj.address = order_form.address.value; // form의 값을 오브젝트에 저장
+    obj.phone = order_form.phone.value; 
+    obj.address = order_form.address.value;
     obj.addr_building = order_form.addr_building.value;
+    obj.memo = order_form.memo.value; 
 
     obj.price = cartData.totalItemPrice;
-    obj.item = cartItemList;
+    obj.dropoff_price = cartData.dropoff_price; 
     
-    // 이런식으로 object에 데이터 저장하면 됨! 
+    var pickupTime = parseInt(date_time_form.pickup_time.value) + 9 + ":00:00";
+    var dropoffTime = parseInt(date_time_form.dropoff_time.value) + 9 + ":00:00";
+    obj.pickup_date = date_time_form.pickup_date.value + " " + pickupTime;
+    obj.dropoff_date = date_time_form.dropoff_date.value + " " + dropoffTime;
+    
+    obj.mileage = 0; 
+    obj.sale = 0; 
+    obj.payment_method = 0; 
+
+    obj.item = [];
+    for(var i = 0; i < cartItemList.length; i++){
+        console.log(cartItemList);
+        obj.item[i] = {
+            item_code: cartItemList[i].item_code,
+            count: cartItemList[i].qty
+        }
+    }
+    
 
     var json_data = JSON.stringify(obj); // 오브젝트를 JSON형식으로 변환
     console.log("json_data : "  + json_data);

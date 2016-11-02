@@ -45,7 +45,12 @@ html {
 .section table tr:last-child td {
   color: #5ddbdb;
   border-top: 1px solid #bcbcbc;
-  border-bottom: 2px solid #bcbcbc;
+}
+.section .gray {
+  border: 1px solid #bcbcbc;
+}
+.section p {
+  font-size: 0.8em;
 }
 .section .cancel-btn {
   height: 42px !important;

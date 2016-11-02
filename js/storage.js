@@ -8,6 +8,7 @@ var storage = {
   setCartItem: function(itemId) {
     if (this.datas.cart[itemId] === undefined){
       this.datas.cart[itemId] = {
+        item_code: this.meta.orderItems[itemId].item_code,
         name: this.meta.orderItems[itemId].name,
         price: this.meta.orderItems[itemId].price,
         qty: 0
@@ -45,6 +46,12 @@ var storage = {
         var subTotalPrice = item.qty * item.price;
         this.datas.totalItemQty += item.qty;
         this.datas.totalItemPrice += subTotalPrice;
+
+        if (this.datas.totalItemPrice < 20000){
+          this.datas.dropoff_price = 2000;
+        } else {
+          this.datas.dropoff_price = 0;
+        }
       }
     }
 
@@ -59,7 +66,8 @@ var storage = {
       this.datas = {
         cart: { },
         totalItemQty: 0,
-        totalItemPrice: 0
+        totalItemPrice: 0,
+        dropoff_price: 2000
       };
     } else {
       this.datas = savedData;
