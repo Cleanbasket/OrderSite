@@ -14,7 +14,7 @@ var view = {
     var _this = this;
     $('ul.tabs').tabs(); // 품목 선택 탭 
 
-    $(document).on('click','.cart-btn',this.checkTotalPrice);
+    $(document).on('click touchend','.cart-btn',this.checkTotalPrice);
   },
 
   checkTotalPrice: function(){
