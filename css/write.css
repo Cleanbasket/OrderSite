@@ -75,14 +75,48 @@ html {
 }
 .section .select-wrapper input,
 .section .select-wrapper select {
+  font-size: 0.9em;
   width: 40%;
   border: 1px solid #bbb;
   display: inline;
   margin: 0 0 0 5px;
 }
+.section .input-wrapper input {
+  color: #666666;
+  border-bottom: 1px solid #9e9e9e;
+}
 .section .input-wrapper input:focus {
   border-bottom: 1px solid #5ddbdb !important;
   box-shadow: 0 1px 0 0 #5ddbdb !important;
+}
+.section [type="checkbox"].filled-in:not(:checked) + label:after {
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  border: 2px solid #5a5a5a;
+  top: 0px;
+  z-index: 0;
+}
+.section [type="checkbox"].filled-in:checked + label:after {
+  top: 0;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #26a69a;
+  background-color: #5ddbdb;
+  z-index: 0;
+}
+.section [type="checkbox"].filled-in:checked + label:before {
+  left: 2px;
+  width: 5px;
+  height: 9px;
+}
+.section .checkbox-text {
+  font-size: 0.8em !important;
+  line-height: 1rem;
+  padding-left: 25px;
+}
+.section a {
+  color: #5ddbdb;
 }
 .section .order-btn {
   color: #5ddbdb;
@@ -96,4 +130,8 @@ html {
   border-radius: 3px;
   text-decoration: none;
   margin: 30px 0;
+}
+.section button[disabled] {
+  color: #bcbcbc;
+  border: 2px solid #bcbcbc;
 }

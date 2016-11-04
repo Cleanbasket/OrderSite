@@ -218,6 +218,53 @@ function orderBtn(e){
     window.location.href = 'complete.html';
 }
 
+
+
+$(document).ready(function() {
+    $(':input').change(function() {
+        $(window).bind('beforeunload', function() {
+            return 'Do you really want to leave the page?';
+        });
+    });
+    $("form").submit(function() {
+        $(window).unbind('beforeunload');
+    });
+    var seoul = ['서울 '];
+    var seongnam = ['경기 성남시 '];
+    
+    $('.order-btn').on('click', function() {
+        var value = $('#address').val();
+        $.each(seoul, function(idx, word) {
+            value = value.replace(word, '서울특별시 ');
+        });
+        $.each(seongnam, function(idx, word) {
+            value = value.replace(word, '성남시 ')
+        })
+        $('#address').val(value);
+    });
+});
+var checkbox = $("input[type='checkbox']"),
+    submitButt = $(".order-btn");
+checkbox.click(function() {
+    submitButt.attr("disabled", !checkbox.is(":checked"));
+});
+function checkAddress() {
+    var addr = document.getElementById("address").value,
+        addrData = [" 강남구 ", " 중구 ", " 서초구 ", " 마포구 ", " 용산구 ", " 동작구 ", " 관악구 ", " 성동구 ", " 영등포구 ", " 서대문구 아현", " 서대문구 북아현", " 서대문구 충현", " 서대문구 대신", " 서대문구 연희", " 서대문구 신촌", "성남시 분당구"]
+    if (addr == "") {
+        alert("주소를 입력해주세요.")
+        return false;
+    }
+    for (var i = 0; i < addrData.length; i++) {
+        if (addr.indexOf(addrData[i]) != -1)
+            return true;
+    }
+    alert("죄송합니다. 서비스 가능 지역이 아닙니다. 하루 빨리 더 많은 고객님을 뵐 수 있도록 최선을 다하겠습니다.");
+    return false;
+}
+
+
+
 function ajaxPostOrderData(json_data){
     $.ajax({                  
         type: "POST",
