@@ -10,10 +10,17 @@ $( document ).ready(function(){
     showCartInfo();
     
     // 변경/추가 버튼 눌렀을 때  
-    $(document).on("click",".cancel-btn",backBtn);
+    $(document).on("click touchend",".cancel-btn",backBtn);
+
+    // 체크박스 클릭 이벤트 
+    var checkbox = $("input[type='checkbox']"),
+        submitButt = $(".order-btn");
+    checkbox.click(function() {
+        submitButt.attr("disabled", !checkbox.is(":checked"));
+    });
 
     // 주문접수 버튼 눌렀을 때 
-    $(document).on("click",".order-btn",orderBtn);
+    $(document).on("click touchend",".order-btn",orderBtn);
 
 });
 
@@ -171,6 +178,44 @@ function backBtn(){
 function orderBtn(e){
     e.preventDefault();
     
+    /***** 작성된 주소 단어 바꾸기 *****/
+    var seoul = ['서울 '],
+        seongnam = ['경기 성남시 '],
+        value = $('#address').val();
+        
+    $.each(seoul, function(idx, word) {
+        value = value.replace(word, '서울특별시 ');
+    });
+    $.each(seongnam, function(idx, word) {
+        value = value.replace(word, '성남시 ')
+    })
+    $('#address').val(value);
+    /*****************************/
+
+    /* 주소 체크하기 */
+    checkAddress();   
+}
+
+function checkAddress() {
+    var addr = document.getElementById("address").value,
+        addrData = [" 강남구 ", " 중구 ", " 서초구 ", " 마포구 ", " 용산구 ", " 동작구 ", " 관악구 ", " 성동구 ", " 영등포구 ", " 서대문구 아현", " 서대문구 북아현", " 서대문구 충현", " 서대문구 대신", " 서대문구 연희", " 서대문구 신촌", "성남시 분당구"]
+    if (addr == "") {
+        alert("주소를 입력해주세요.")
+        return false;
+    }
+    for (var i = 0; i < addrData.length; i++) {
+        if (addr.indexOf(addrData[i]) != -1){
+            ajaxPostOrderData(); // 주문 정보 ajax 보냄
+            return true;
+        }
+    }
+    alert("죄송합니다. 서비스 가능 지역이 아닙니다. 하루 빨리 더 많은 고객님을 뵐 수 있도록 최선을 다하겠습니다.");
+    return false;
+}
+
+
+
+function ajaxPostOrderData(){
     var date_time_form = document.date_time_info,
         order_form = document.order_info,
         obj = new Object(),
@@ -180,7 +225,8 @@ function orderBtn(e){
     var cartItemList = $.map(cartData.cart, function(value) {
         return [value];
     });
-
+    
+    obj.uid = 7594;
     obj.phone = order_form.phone.value; 
     obj.address = order_form.address.value;
     obj.addr_building = order_form.addr_building.value;
@@ -200,84 +246,40 @@ function orderBtn(e){
 
     obj.item = [];
     for(var i = 0; i < cartItemList.length; i++){
-        console.log(cartItemList);
         obj.item[i] = {
             item_code: cartItemList[i].item_code,
             count: cartItemList[i].qty
         }
     }
-    
 
     var json_data = JSON.stringify(obj); // 오브젝트를 JSON형식으로 변환
-    console.log("json_data : "  + json_data);
 
-    // ajax post 
-    // ajaxPostOrderData(json_data); 
-
-    // 주문완료 페이지로 이동 
-    window.location.href = 'complete.html';
-}
-
-
-
-$(document).ready(function() {
-    $(':input').change(function() {
-        $(window).bind('beforeunload', function() {
-            return 'Do you really want to leave the page?';
-        });
-    });
-    $("form").submit(function() {
-        $(window).unbind('beforeunload');
-    });
-    var seoul = ['서울 '];
-    var seongnam = ['경기 성남시 '];
-    
-    $('.order-btn').on('click', function() {
-        var value = $('#address').val();
-        $.each(seoul, function(idx, word) {
-            value = value.replace(word, '서울특별시 ');
-        });
-        $.each(seongnam, function(idx, word) {
-            value = value.replace(word, '성남시 ')
-        })
-        $('#address').val(value);
-    });
-});
-var checkbox = $("input[type='checkbox']"),
-    submitButt = $(".order-btn");
-checkbox.click(function() {
-    submitButt.attr("disabled", !checkbox.is(":checked"));
-});
-function checkAddress() {
-    var addr = document.getElementById("address").value,
-        addrData = [" 강남구 ", " 중구 ", " 서초구 ", " 마포구 ", " 용산구 ", " 동작구 ", " 관악구 ", " 성동구 ", " 영등포구 ", " 서대문구 아현", " 서대문구 북아현", " 서대문구 충현", " 서대문구 대신", " 서대문구 연희", " 서대문구 신촌", "성남시 분당구"]
-    if (addr == "") {
-        alert("주소를 입력해주세요.")
-        return false;
-    }
-    for (var i = 0; i < addrData.length; i++) {
-        if (addr.indexOf(addrData[i]) != -1)
-            return true;
-    }
-    alert("죄송합니다. 서비스 가능 지역이 아닙니다. 하루 빨리 더 많은 고객님을 뵐 수 있도록 최선을 다하겠습니다.");
-    return false;
-}
-
-
-
-function ajaxPostOrderData(json_data){
     $.ajax({                  
         type: "POST",
-        url: "http://localhost:8080/wash/member/order/add",
+        url: "http://localhost:8080/wash/member/order/add/new",
+        headers: {
+            "content-type":"application/json"
+        },
         dataType: "json",
         data: json_data,
         success: function(resData) { 
-          if (resData.constant == 1){ // 1 = Success 
-            // TODO 
-          }
+            if (resData.constant == 0){ 
+                alert("고객센터(1833-8543)로 전화주시기 바랍니다. (운영시간 : 평일 오전 10시 ~ 6시)");
+            } else if (resData.constant == 1){ // 1 = Success 
+                // 주문완료 페이지로 이동 
+                window.location.href = 'complete.html';
+            } else if (resData.constant == 18){
+                alert("서비스 가능지역이 아닙니다.");
+            } else if (resData.constant == 19){
+                alert("선택하신 일정(날짜/시간)은 주문이 마감된 상태입니다. 다른 일정으로 다시 선택해주시기 바랍니다.");
+            } else if (resData.constant == 23 || resData.constant == 24){
+                alert("선택하신 시간은 주문이 불가능합니다.");
+            } else {
+                alert("고객센터(1833-8543)로 전화주시기 바랍니다. (운영시간 : 평일 오전 10시 ~ 6시)");
+            }
         },
-        error: function(){
-            // TODO 
+        error: function(request,status,error){
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
         }
     });
 }
