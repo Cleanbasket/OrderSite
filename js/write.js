@@ -1,10 +1,12 @@
 $( document ).ready(function(){
+    var curruntPickupDate,
+        curruntDropoffDate;
 
     // 수거 및 배달 날짜 세팅 
     setToday();
     $(document).on("change","#pickup_date",changePickupDate);
     $(document).on("change","#pickup_time",setDropoffTime);
-    $(document).on("change","#dropoff_date",setDropoffTime);
+    $(document).on("change","#dropoff_date",changeDropoffDate);
 
     // 주문 내역 보여주기 
     showCartInfo();
@@ -32,13 +34,42 @@ Date.prototype.toDateInputValue = (function() {
 
 function setToday(){
     var today = new Date();
+    var sunday = 0;
+
+    // 오늘이 일요일일 경우 월요일부터 선택 가능하게 함 
+    if(today.getDay() == sunday){
+        today.setDate(today.getDate() + 1); 
+    }
+
     setDatePicker(today);
 }
 
 function changePickupDate(){
     var changeVal = $('#pickup_date').val();
     var changeDate = new Date(changeVal);
-    setDatePicker(changeDate);
+    var sunday = 0;
+
+    // 선택한 날이 일요일일 경우 안내메세지를 보여주고 바꾸지 않음 
+    if (changeDate.getDay() == sunday){
+        alert("일요일은 수거/배달을 하지 않습니다. 다른 날짜로 다시 선택해주세요.");
+        $('#pickup_date').val(curruntPickupDate);
+    } else {
+        setDatePicker(changeDate);
+    }
+}
+
+function changeDropoffDate(){
+    var changeVal = $('#dropoff_date').val();
+    var changeDate = new Date(changeVal);
+    var sunday = 0;
+
+    // 선택한 날이 일요일일 경우 안내메세지를 보여주고 바꾸지 않음 
+    if (changeDate.getDay() == sunday){
+        alert("일요일은 수거/배달을 하지 않습니다. 다른 날짜로 다시 선택해주세요.");
+        $('#dropoff_date').val(curruntDropoffDate);
+    } else {
+        setDropoffTime();
+    }
 }
 
 function setDatePicker(pickup_date){
@@ -76,6 +107,8 @@ function setDatePicker(pickup_date){
             'min': dropoff_minDate.toDateInputValue(),
             'max': dropoff_maxDate.toDateInputValue()
         });
+
+    curruntPickupDate = $('#pickup_date').val();
 
     setPickupTime(pickup_date);
     setDropoffTime();
@@ -127,6 +160,7 @@ function setPickupTime(pickup_date) {
 }
 
 function setDropoffTime() {
+    console.log("setDropoffTime");
     var dropoff_minDate = $('#dropoff_date').data('minDate'),
         dropoff_date = $('#dropoff_date').val();
 
@@ -150,6 +184,7 @@ function setDropoffTime() {
             select.append("<option value='" + i + "'>" + hoursTextData[i] + "</option>");
     }
 
+    curruntDropoffDate = $('#dropoff_date').val();
 }
 
 function showCartInfo() {
