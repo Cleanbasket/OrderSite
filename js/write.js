@@ -310,7 +310,7 @@ function ajaxPostOrderData(){
             } else if (resData.constant == 23 || resData.constant == 24){
                 alert("선택하신 시간은 주문이 불가능합니다.");
             } else {
-                alert("고객센터(1833-8543)로 전화주시기 바랍니다. (운영시간 : 평일 오전 10시 ~ 6시)");
+                alert("고객센터(1833-8543)로 전화주시기 바랍니다. (고객센터 운영시간 : 평일 오전 10시 ~ 6시)");
             }
         },
         error: function(request,status,error){
